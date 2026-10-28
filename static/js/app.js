@@ -1,6 +1,7 @@
 (() => {
   const THEME_KEY = "takt-theme";
   const SIDEBAR_KEY = "takt-sidebar";
+  const NAV_GROUPS_KEY = "takt-nav-groups";
 
   const rows = document.querySelectorAll("tr[data-href]");
   rows.forEach((row) => {
@@ -85,4 +86,64 @@
     });
   });
   setSidebarCollapsed(isSidebarCollapsed());
+
+  function readNavGroups() {
+    try {
+      const raw = localStorage.getItem(NAV_GROUPS_KEY);
+      if (!raw) {
+        return {};
+      }
+      const parsed = JSON.parse(raw);
+      return parsed && typeof parsed === "object" ? parsed : {};
+    } catch (e) {
+      return {};
+    }
+  }
+
+  function writeNavGroups(state) {
+    try {
+      localStorage.setItem(NAV_GROUPS_KEY, JSON.stringify(state));
+    } catch (e) {
+      /* ignore */
+    }
+  }
+
+  function setNavGroupCollapsed(group, collapsed, persist) {
+    const key = group.getAttribute("data-nav-group");
+    const toggle = group.querySelector("[data-nav-group-toggle]");
+    group.classList.toggle("is-collapsed", collapsed);
+    if (toggle) {
+      toggle.setAttribute("aria-expanded", collapsed ? "false" : "true");
+      const label = collapsed
+        ? toggle.getAttribute("data-expand-label")
+        : toggle.getAttribute("data-collapse-label");
+      if (label) {
+        toggle.setAttribute("aria-label", label);
+        toggle.setAttribute("title", label);
+      }
+    }
+    if (persist && key) {
+      const state = readNavGroups();
+      state[key] = collapsed ? "collapsed" : "expanded";
+      writeNavGroups(state);
+    }
+  }
+
+  const savedGroups = readNavGroups();
+  document.querySelectorAll("[data-nav-group]").forEach((group) => {
+    const key = group.getAttribute("data-nav-group");
+    const toggle = group.querySelector("[data-nav-group-toggle]");
+    if (!toggle) {
+      return;
+    }
+    const collapsed = savedGroups[key] === "collapsed";
+    setNavGroupCollapsed(group, collapsed, false);
+    toggle.addEventListener("click", () => {
+      setNavGroupCollapsed(
+        group,
+        !group.classList.contains("is-collapsed"),
+        true
+      );
+    });
+  });
 })();

@@ -29,135 +29,238 @@
       </p>
     </div>
 
-    <div class="nav-section sidebar-label">{% trans "Workspace" %}</div>
-    <ul class="nav flex-column gap-1 mb-1" data-nav>
-      <li class="nav-item">
-        <a class="nav-link{% if url_name == 'index' %} active{% endif %}"
-           href="{% url 'tasks:index' %}"
-           title="{% trans 'Dashboard' %}">
-          <span class="nav-abbr" aria-hidden="true">D</span>
-          <span class="sidebar-label">{% trans "Dashboard" %}</span>
-        </a>
-      </li>
-      <li class="nav-item">
-        <a class="nav-link{% if url_name == 'task-list' %} active{% endif %}"
-           href="{% url 'tasks:task-list' %}"
-           title="{% trans 'Tasks' %}">
-          <span class="nav-abbr" aria-hidden="true">T</span>
-          <span class="sidebar-label">{% trans "Tasks" %}</span>
-        </a>
-      </li>
-      <li class="nav-item">
-        <a class="nav-link{% if url_name == 'my-task-list' %} active{% endif %}"
-           href="{% url 'tasks:my-task-list' %}"
-           title="{% trans 'My tasks' %}">
-          <span class="nav-abbr" aria-hidden="true">M</span>
-          <span class="sidebar-label">{% trans "My tasks" %}</span>
-        </a>
-      </li>
-      <li class="nav-item">
-        <a class="nav-link{% if url_name == 'project-list' or url_name == 'project-detail' %} active{% endif %}"
-           href="{% url 'tasks:project-list' %}"
-           title="{% trans 'Projects' %}">
-          <span class="nav-abbr" aria-hidden="true">P</span>
-          <span class="sidebar-label">{% trans "Projects" %}</span>
-        </a>
-      </li>
-      <li class="nav-item">
-        <a class="nav-link{% if url_name == 'team-list' or url_name == 'team-detail' %} active{% endif %}"
-           href="{% url 'tasks:team-list' %}"
-           title="{% trans 'Teams' %}">
-          <span class="nav-abbr" aria-hidden="true">Te</span>
-          <span class="sidebar-label">{% trans "Teams" %}</span>
-        </a>
-      </li>
-      <li class="nav-item">
-        <a class="nav-link{% if url_name == 'worker-list' or url_name == 'worker-detail' %} active{% endif %}"
-           href="{% url 'tasks:worker-list' %}"
-           title="{% trans 'Workers' %}">
-          <span class="nav-abbr" aria-hidden="true">W</span>
-          <span class="sidebar-label">{% trans "Workers" %}</span>
-        </a>
-      </li>
-    </ul>
+    <div class="sidebar-scroll">
+      <div class="nav-group" data-nav-group="workspace">
+        <button
+          type="button"
+          class="nav-section-toggle"
+          data-nav-group-toggle
+          aria-expanded="true"
+          aria-controls="nav-workspace"
+          data-collapse-label="{% trans 'Collapse section' %}"
+          data-expand-label="{% trans 'Expand section' %}"
+        >
+          <span class="nav-section-label sidebar-label">{% trans "Workspace" %}</span>
+          <span class="nav-section-chevron" aria-hidden="true"></span>
+        </button>
+        <ul class="nav flex-column gap-1 mb-1" id="nav-workspace" data-nav>
+          <li class="nav-item">
+            <a class="nav-link{% if url_name == 'index' %} active{% endif %}"
+               href="{% url 'tasks:index' %}"
+               title="{% trans 'Dashboard' %}">
+              <svg class="nav-icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+                <path d="M4 11.5 12 4l8 7.5V20a1 1 0 0 1-1 1h-5v-6H10v6H5a1 1 0 0 1-1-1v-8.5Z"
+                      fill="none" stroke="currentColor" stroke-width="1.75"
+                      stroke-linejoin="round"/>
+              </svg>
+              <span class="sidebar-label">{% trans "Dashboard" %}</span>
+            </a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link{% if url_name == 'task-list' %} active{% endif %}"
+               href="{% url 'tasks:task-list' %}"
+               title="{% trans 'Tasks' %}">
+              <svg class="nav-icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+                <path d="M9 6h11M9 12h11M9 18h11M4 6h.01M4 12h.01M4 18h.01"
+                      fill="none" stroke="currentColor" stroke-width="1.75"
+                      stroke-linecap="round"/>
+              </svg>
+              <span class="sidebar-label">{% trans "Tasks" %}</span>
+            </a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link{% if url_name == 'my-task-list' %} active{% endif %}"
+               href="{% url 'tasks:my-task-list' %}"
+               title="{% trans 'My tasks' %}">
+              <svg class="nav-icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+                <path d="M9 11.5 11 13.5 15.5 9M5 19a7 7 0 1 1 14 0"
+                      fill="none" stroke="currentColor" stroke-width="1.75"
+                      stroke-linecap="round" stroke-linejoin="round"/>
+                <circle cx="12" cy="8" r="3.25" fill="none" stroke="currentColor" stroke-width="1.75"/>
+              </svg>
+              <span class="sidebar-label">{% trans "My tasks" %}</span>
+            </a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link{% if url_name == 'project-list' or url_name == 'project-detail' %} active{% endif %}"
+               href="{% url 'tasks:project-list' %}"
+               title="{% trans 'Projects' %}">
+              <svg class="nav-icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+                <path d="M4 7.5A1.5 1.5 0 0 1 5.5 6H10l2 2h6.5A1.5 1.5 0 0 1 20 9.5v8A1.5 1.5 0 0 1 18.5 19h-13A1.5 1.5 0 0 1 4 17.5v-10Z"
+                      fill="none" stroke="currentColor" stroke-width="1.75"
+                      stroke-linejoin="round"/>
+              </svg>
+              <span class="sidebar-label">{% trans "Projects" %}</span>
+            </a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link{% if url_name == 'team-list' or url_name == 'team-detail' %} active{% endif %}"
+               href="{% url 'tasks:team-list' %}"
+               title="{% trans 'Teams' %}">
+              <svg class="nav-icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+                <circle cx="9" cy="8" r="3" fill="none" stroke="currentColor" stroke-width="1.75"/>
+                <circle cx="16.5" cy="9.5" r="2.5" fill="none" stroke="currentColor" stroke-width="1.75"/>
+                <path d="M3.5 19a5.5 5.5 0 0 1 11 0M13 19a4.5 4.5 0 0 1 7.5 0"
+                      fill="none" stroke="currentColor" stroke-width="1.75"
+                      stroke-linecap="round"/>
+              </svg>
+              <span class="sidebar-label">{% trans "Teams" %}</span>
+            </a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link{% if url_name == 'worker-list' or url_name == 'worker-detail' %} active{% endif %}"
+               href="{% url 'tasks:worker-list' %}"
+               title="{% trans 'Workers' %}">
+              <svg class="nav-icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+                <circle cx="12" cy="8" r="3.25" fill="none" stroke="currentColor" stroke-width="1.75"/>
+                <path d="M5 19a7 7 0 0 1 14 0"
+                      fill="none" stroke="currentColor" stroke-width="1.75"
+                      stroke-linecap="round"/>
+              </svg>
+              <span class="sidebar-label">{% trans "Workers" %}</span>
+            </a>
+          </li>
+        </ul>
+      </div>
 
-    <div class="nav-section sidebar-label">{% trans "Catalog" %}</div>
-    <ul class="nav flex-column gap-1 mb-3" data-nav>
-      <li class="nav-item">
-        <a class="nav-link{% if url_name == 'tag-list' %} active{% endif %}"
-           href="{% url 'tasks:tag-list' %}"
-           title="{% trans 'Tags' %}">
-          <span class="nav-abbr" aria-hidden="true">Tg</span>
-          <span class="sidebar-label">{% trans "Tags" %}</span>
-        </a>
-      </li>
-      <li class="nav-item">
-        <a class="nav-link{% if url_name == 'task-type-list' %} active{% endif %}"
-           href="{% url 'tasks:task-type-list' %}"
-           title="{% trans 'Task types' %}">
-          <span class="nav-abbr" aria-hidden="true">Ty</span>
-          <span class="sidebar-label">{% trans "Task types" %}</span>
-        </a>
-      </li>
-    </ul>
+      <div class="nav-group" data-nav-group="catalog">
+        <button
+          type="button"
+          class="nav-section-toggle"
+          data-nav-group-toggle
+          aria-expanded="true"
+          aria-controls="nav-catalog"
+          data-collapse-label="{% trans 'Collapse section' %}"
+          data-expand-label="{% trans 'Expand section' %}"
+        >
+          <span class="nav-section-label sidebar-label">{% trans "Catalog" %}</span>
+          <span class="nav-section-chevron" aria-hidden="true"></span>
+        </button>
+        <ul class="nav flex-column gap-1 mb-1" id="nav-catalog" data-nav>
+          <li class="nav-item">
+            <a class="nav-link{% if url_name == 'tag-list' %} active{% endif %}"
+               href="{% url 'tasks:tag-list' %}"
+               title="{% trans 'Tags' %}">
+              <svg class="nav-icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+                <path d="M3.5 12.5V5.5A1.5 1.5 0 0 1 5 4h7l8.5 8.5-7 7L3.5 12.5Z"
+                      fill="none" stroke="currentColor" stroke-width="1.75"
+                      stroke-linejoin="round"/>
+                <circle cx="8" cy="8" r="1.25" fill="currentColor"/>
+              </svg>
+              <span class="sidebar-label">{% trans "Tags" %}</span>
+            </a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link{% if url_name == 'task-type-list' %} active{% endif %}"
+               href="{% url 'tasks:task-type-list' %}"
+               title="{% trans 'Task types' %}">
+              <svg class="nav-icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+                <path d="M5 7h14M5 12h14M5 17h9"
+                      fill="none" stroke="currentColor" stroke-width="1.75"
+                      stroke-linecap="round"/>
+              </svg>
+              <span class="sidebar-label">{% trans "Task types" %}</span>
+            </a>
+          </li>
+        </ul>
+      </div>
 
-    {% if user.is_staff %}
-      <div class="nav-section sidebar-label">{% trans "Manage" %}</div>
-      <ul class="nav flex-column gap-1 mb-3" data-nav>
-        <li class="nav-item">
-          <a class="nav-link" href="{% url 'admin:index' %}"
-             title="{% trans 'Admin' %}">
-            <span class="nav-abbr" aria-hidden="true">A</span>
-            <span class="sidebar-label">{% trans "Admin" %}</span>
-          </a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link{% if url_name == 'team-create' %} active{% endif %}"
-             href="{% url 'tasks:team-create' %}"
-             title="{% trans 'Create team' %}">
-            <span class="nav-abbr" aria-hidden="true">+</span>
-            <span class="sidebar-label">{% trans "Create team" %}</span>
-          </a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link{% if url_name == 'tag-create' %} active{% endif %}"
-             href="{% url 'tasks:tag-create' %}"
-             title="{% trans 'Create tag' %}">
-            <span class="nav-abbr" aria-hidden="true">+</span>
-            <span class="sidebar-label">{% trans "Create tag" %}</span>
-          </a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link{% if url_name == 'task-type-create' %} active{% endif %}"
-             href="{% url 'tasks:task-type-create' %}"
-             title="{% trans 'Create type' %}">
-            <span class="nav-abbr" aria-hidden="true">+</span>
-            <span class="sidebar-label">{% trans "Create type" %}</span>
-          </a>
-        </li>
-      </ul>
-    {% endif %}
-
-    <div class="sidebar-prefs">
-      {% include "includes/prefs.html" %}
+      {% if user.is_staff %}
+        <div class="nav-group" data-nav-group="manage">
+          <button
+            type="button"
+            class="nav-section-toggle"
+            data-nav-group-toggle
+            aria-expanded="true"
+            aria-controls="nav-manage"
+            data-collapse-label="{% trans 'Collapse section' %}"
+            data-expand-label="{% trans 'Expand section' %}"
+          >
+            <span class="nav-section-label sidebar-label">{% trans "Manage" %}</span>
+            <span class="nav-section-chevron" aria-hidden="true"></span>
+          </button>
+          <ul class="nav flex-column gap-1 mb-1" id="nav-manage" data-nav>
+            <li class="nav-item">
+              <a class="nav-link" href="{% url 'admin:index' %}"
+                 title="{% trans 'Admin' %}">
+                <svg class="nav-icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+                  <circle cx="12" cy="12" r="3" fill="none" stroke="currentColor" stroke-width="1.75"/>
+                  <path d="M12 3.5v2.2M12 18.3v2.2M3.5 12h2.2M18.3 12h2.2M6.1 6.1l1.6 1.6M16.3 16.3l1.6 1.6M17.9 6.1l-1.6 1.6M7.7 16.3l-1.6 1.6"
+                        fill="none" stroke="currentColor" stroke-width="1.75"
+                        stroke-linecap="round"/>
+                </svg>
+                <span class="sidebar-label">{% trans "Admin" %}</span>
+              </a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link{% if url_name == 'team-create' %} active{% endif %}"
+                 href="{% url 'tasks:team-create' %}"
+                 title="{% trans 'Create team' %}">
+                <svg class="nav-icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+                  <path d="M12 5v14M5 12h14"
+                        fill="none" stroke="currentColor" stroke-width="1.75"
+                        stroke-linecap="round"/>
+                </svg>
+                <span class="sidebar-label">{% trans "Create team" %}</span>
+              </a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link{% if url_name == 'tag-create' %} active{% endif %}"
+                 href="{% url 'tasks:tag-create' %}"
+                 title="{% trans 'Create tag' %}">
+                <svg class="nav-icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+                  <path d="M12 5v14M5 12h14"
+                        fill="none" stroke="currentColor" stroke-width="1.75"
+                        stroke-linecap="round"/>
+                </svg>
+                <span class="sidebar-label">{% trans "Create tag" %}</span>
+              </a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link{% if url_name == 'task-type-create' %} active{% endif %}"
+                 href="{% url 'tasks:task-type-create' %}"
+                 title="{% trans 'Create type' %}">
+                <svg class="nav-icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+                  <path d="M12 5v14M5 12h14"
+                        fill="none" stroke="currentColor" stroke-width="1.75"
+                        stroke-linecap="round"/>
+                </svg>
+                <span class="sidebar-label">{% trans "Create type" %}</span>
+              </a>
+            </li>
+          </ul>
+        </div>
+      {% endif %}
     </div>
 
-    <form method="post" action="{% url 'logout' %}" class="mt-3">
-      {% csrf_token %}
-      <button type="submit" class="btn btn-logout btn-sm w-100"
-              title="{% trans 'Sign out' %}">
-        <span class="sidebar-label">{% trans "Sign out" %}</span>
-        <span class="nav-abbr d-none" aria-hidden="true">⎋</span>
-      </button>
-    </form>
+    <div class="sidebar-footer">
+      <div class="sidebar-prefs">
+        {% include "includes/prefs.html" %}
+      </div>
+      <form method="post" action="{% url 'logout' %}" class="mt-3">
+        {% csrf_token %}
+        <button type="submit" class="btn btn-logout btn-sm w-100"
+                title="{% trans 'Sign out' %}">
+          <svg class="nav-icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+            <path d="M10 5H6.5A1.5 1.5 0 0 0 5 6.5v11A1.5 1.5 0 0 0 6.5 19H10M14 8l4 4-4 4M9.5 12H18"
+                  fill="none" stroke="currentColor" stroke-width="1.75"
+                  stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+          <span class="sidebar-label">{% trans "Sign out" %}</span>
+        </button>
+      </form>
+    </div>
   {% else %}
-    <div class="sidebar-prefs mb-3">
-      {% include "includes/prefs.html" %}
+    <div class="sidebar-scroll sidebar-scroll-empty"></div>
+    <div class="sidebar-footer">
+      <div class="sidebar-prefs mb-3">
+        {% include "includes/prefs.html" %}
+      </div>
+      <a class="btn btn-primary btn-sm w-100" href="{% url 'login' %}"
+         title="{% trans 'Sign in' %}">
+        <span class="sidebar-label">{% trans "Sign in" %}</span>
+      </a>
     </div>
-    <a class="btn btn-primary btn-sm w-100" href="{% url 'login' %}"
-       title="{% trans 'Sign in' %}">
-      <span class="sidebar-label">{% trans "Sign in" %}</span>
-    </a>
   {% endif %}
 </div>
 {% endwith %}
