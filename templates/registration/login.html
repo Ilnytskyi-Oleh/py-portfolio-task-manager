@@ -1,0 +1,56 @@
+{% extends "base.html" %}
+{% load i18n task_perms %}
+
+{% block title %}<title>{% trans "Sign in" %} — TAKT</title>{% endblock %}
+
+{% block site_nav %}{% endblock %}
+{% block sidebar_column %}{% endblock %}
+
+{% block content %}
+  <div class="login-screen">
+    <div class="row justify-content-center w-100 mx-0">
+      <div class="col-12 col-sm-10 col-md-6 col-lg-5">
+        <div class="login-brand-block">
+          {% include "includes/brand.html" with large=1 %}
+          <p class="login-tagline mt-3">
+            {% trans "Complex work. Clear rhythm." %}
+          </p>
+          <p class="text-muted mb-0 mt-2">
+            {% trans "Sign in to plan, assign and finish work with your team." %}
+          </p>
+        </div>
+
+        <h1 class="h4 mb-3">{% trans "Sign in" %}</h1>
+        {% if form.errors %}
+          <div class="alert alert-danger">
+            {% trans "Could not sign in. Check your username and password, then try again." %}
+          </div>
+        {% endif %}
+        <form method="post" class="login-panel">
+          {% csrf_token %}
+          <div class="mb-3">
+            <label class="form-label" for="id_username">{% trans "Username" %}</label>
+            <input type="text" name="username" id="id_username"
+                   class="form-control form-control-lg" required autofocus
+                   autocomplete="username">
+          </div>
+          <div class="mb-3">
+            <label class="form-label" for="id_password">{% trans "Password" %}</label>
+            <input type="password" name="password" id="id_password"
+                   class="form-control form-control-lg" required
+                   autocomplete="current-password">
+          </div>
+          <button type="submit" class="btn btn-primary btn-lg w-100">
+            {% trans "Sign in" %}
+          </button>
+        </form>
+        {% demo_mode as show_demo %}
+        {% if show_demo %}
+          <p class="text-muted small mt-3 mb-0">
+            {% trans "Demo:" %} <code>admin.user</code> / <code>1qazcde3</code>
+          </p>
+        {% endif %}
+      </div>
+    </div>
+  </div>
+{% endblock %}

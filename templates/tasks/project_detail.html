@@ -1,0 +1,35 @@
+{% extends "base.html" %}
+{% load i18n task_perms %}
+
+{% block title %}<title>{{ project.name }} — TAKT</title>{% endblock %}
+
+{% block content %}
+  <div class="page-header align-items-start">
+    <div class="me-auto">
+      <h1 class="mb-1">{{ project.name }}</h1>
+      <p class="page-lede mb-0">
+        {% trans "Team:" %}
+        <a href="{{ project.team.get_absolute_url }}">
+          {{ project.team.name }}
+        </a>
+      </p>
+    </div>
+    {% if request.user|can_manage_project:project %}
+      <div class="page-actions">
+        <a class="btn btn-outline-primary"
+           href="{% url 'tasks:project-update' pk=project.pk %}">{% trans "Edit" %}</a>
+      </div>
+    {% endif %}
+  </div>
+
+  {% if project.description %}
+    <div class="detail-panel mb-4">
+      {{ project.description|linebreaksbr }}
+    </div>
+  {% endif %}
+
+  <h2 class="section-title">{% trans "Tasks" %}</h2>
+  {% with task_list=project.tasks.all current_sort=None current_dir=None %}
+    {% include "tasks/includes/task_table.html" %}
+  {% endwith %}
+{% endblock %}

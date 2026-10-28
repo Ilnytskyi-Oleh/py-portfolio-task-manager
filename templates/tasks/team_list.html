@@ -1,0 +1,53 @@
+{% extends "base.html" %}
+{% load i18n %}
+
+{% block title %}<title>{% trans "Teams" %} — TAKT</title>{% endblock %}
+
+{% block content %}
+  <div class="page-header">
+    <div>
+      <h1 class="mb-1">{% trans "Teams" %}</h1>
+      <p class="page-lede mb-0">{% trans "Groups collaborating on projects." %}</p>
+    </div>
+    {% if user.is_staff %}
+      <div class="page-actions">
+        <a class="btn btn-primary" href="{% url 'tasks:team-create' %}">
+          {% trans "New team" %}
+        </a>
+      </div>
+    {% endif %}
+  </div>
+  <div class="table-shell table-responsive">
+    <table class="table tm-table">
+      <thead>
+      <tr>
+        <th>{% trans "Name" %}</th>
+        <th>{% trans "Members" %}</th>
+        <th>{% trans "Projects" %}</th>
+      </tr>
+      </thead>
+      <tbody>
+      {% for team in team_list %}
+        <tr data-href="{{ team.get_absolute_url }}">
+          <td>
+            <a class="task-name" href="{{ team.get_absolute_url }}">
+              {{ team.name }}
+            </a>
+          </td>
+          <td>{{ team.member_count }}</td>
+          <td>{{ team.project_count }}</td>
+        </tr>
+      {% empty %}
+        <tr>
+          <td colspan="3">
+            <div class="empty-state border-0 bg-transparent py-4">
+              <h2>{% trans "No teams yet" %}</h2>
+              <p>{% trans "Create a team to start organizing people and projects." %}</p>
+            </div>
+          </td>
+        </tr>
+      {% endfor %}
+      </tbody>
+    </table>
+  </div>
+{% endblock %}

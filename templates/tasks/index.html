@@ -1,0 +1,75 @@
+{% extends "base.html" %}
+{% load i18n %}
+
+{% block title %}<title>{% trans "Dashboard" %} — TAKT</title>{% endblock %}
+
+{% block content %}
+  <div class="page-header align-items-end">
+    <div>
+      <h1 class="mb-1">{% trans "Dashboard" %}</h1>
+      <p class="page-lede mb-0">
+        {% trans "One place for people, projects and the next step in your work." %}
+      </p>
+    </div>
+    <div class="page-actions">
+      <a class="btn btn-primary" href="{% url 'tasks:task-create' %}">
+        {% trans "New task" %}
+      </a>
+    </div>
+  </div>
+
+  <div class="row g-3 mb-4 stat-grid">
+    <div class="col-6 col-md-3">
+      <div class="stat-tile">
+        <div class="label">{% trans "Workers" %}</div>
+        <div class="value">{{ num_workers }}</div>
+      </div>
+    </div>
+    <div class="col-6 col-md-3">
+      <div class="stat-tile">
+        <div class="label">{% trans "Teams" %}</div>
+        <div class="value">{{ num_teams }}</div>
+      </div>
+    </div>
+    <div class="col-6 col-md-3">
+      <div class="stat-tile">
+        <div class="label">{% trans "Projects" %}</div>
+        <div class="value">{{ num_projects }}</div>
+      </div>
+    </div>
+    <div class="col-6 col-md-3">
+      <div class="stat-tile">
+        <div class="label">{% trans "Tasks" %}</div>
+        <div class="value">{{ num_tasks }}</div>
+      </div>
+    </div>
+  </div>
+
+  <h2 class="section-title">{% trans "Your workload" %}</h2>
+  <div class="row g-3">
+    <div class="col-12 col-md-6">
+      <div class="accent-panel open">
+        <h3 class="h5 mb-1">{% trans "Open tasks" %}</h3>
+        <p class="display-title mb-3" style="font-size: 2rem;">
+          {{ my_open_tasks }}
+        </p>
+        <a class="btn btn-sm btn-outline-secondary"
+           href="{% url 'tasks:my-task-list' %}?status=open">
+          {% trans "View open" %}
+        </a>
+      </div>
+    </div>
+    <div class="col-12 col-md-6">
+      <div class="accent-panel done">
+        <h3 class="h5 mb-1">{% trans "Completed" %}</h3>
+        <p class="display-title mb-3" style="font-size: 2rem;">
+          {{ my_done_tasks }}
+        </p>
+        <a class="btn btn-sm btn-outline-secondary"
+           href="{% url 'tasks:my-task-list' %}?status=done">
+          {% trans "View done" %}
+        </a>
+      </div>
+    </div>
+  </div>
+{% endblock %}

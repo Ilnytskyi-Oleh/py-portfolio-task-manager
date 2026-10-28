@@ -1,0 +1,140 @@
+<mxfile host="app.diagrams.net" agent="cursor" version="22.1.0">
+  <diagram id="task-manager-db" name="Task Manager">
+    <mxGraphModel dx="1400" dy="900" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1600" pageHeight="1100" math="0" shadow="0">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+
+        <mxCell id="position" value="Position" style="swimlane;fontStyle=1;align=center;startSize=28;fillColor=#dae8fc;strokeColor=#6c8ebf;rounded=0;html=1;" vertex="1" parent="1">
+          <mxGeometry x="40" y="40" width="220" height="96" as="geometry" />
+        </mxCell>
+        <mxCell id="position_fields" value="PK&amp;nbsp;&amp;nbsp;id&lt;br&gt;name" style="text;strokeColor=none;fillColor=none;align=left;spacingLeft=12;html=1;verticalAlign=top;" vertex="1" parent="position">
+          <mxGeometry y="28" width="220" height="68" as="geometry" />
+        </mxCell>
+
+        <mxCell id="worker" value="Worker (AbstractUser)" style="swimlane;fontStyle=1;align=center;startSize=28;fillColor=#d5e8d4;strokeColor=#82b366;html=1;" vertex="1" parent="1">
+          <mxGeometry x="400" y="40" width="280" height="210" as="geometry" />
+        </mxCell>
+        <mxCell id="worker_fields" value="PK&amp;nbsp;&amp;nbsp;id&lt;br&gt;username&lt;br&gt;email&lt;br&gt;first_name&lt;br&gt;last_name&lt;br&gt;password&lt;br&gt;is_staff / is_superuser&lt;br&gt;FK&amp;nbsp;&amp;nbsp;position_id → Position" style="text;strokeColor=none;fillColor=none;align=left;spacingLeft=12;html=1;verticalAlign=top;" vertex="1" parent="worker">
+          <mxGeometry y="28" width="280" height="182" as="geometry" />
+        </mxCell>
+
+        <mxCell id="team" value="Team" style="swimlane;fontStyle=1;align=center;startSize=28;fillColor=#dae8fc;strokeColor=#6c8ebf;html=1;" vertex="1" parent="1">
+          <mxGeometry x="820" y="40" width="240" height="96" as="geometry" />
+        </mxCell>
+        <mxCell id="team_fields" value="PK&amp;nbsp;&amp;nbsp;id&lt;br&gt;name" style="text;strokeColor=none;fillColor=none;align=left;spacingLeft=12;html=1;verticalAlign=top;" vertex="1" parent="team">
+          <mxGeometry y="28" width="240" height="68" as="geometry" />
+        </mxCell>
+
+        <mxCell id="team_members" value="Team_members" style="swimlane;fontStyle=1;align=center;startSize=28;fillColor=#fff2cc;strokeColor=#d6b656;html=1;" vertex="1" parent="1">
+          <mxGeometry x="820" y="200" width="240" height="110" as="geometry" />
+        </mxCell>
+        <mxCell id="team_members_fields" value="PK&amp;nbsp;&amp;nbsp;id&lt;br&gt;FK&amp;nbsp;&amp;nbsp;team_id → Team&lt;br&gt;FK&amp;nbsp;&amp;nbsp;worker_id → Worker" style="text;strokeColor=none;fillColor=none;align=left;spacingLeft=12;html=1;verticalAlign=top;" vertex="1" parent="team_members">
+          <mxGeometry y="28" width="240" height="82" as="geometry" />
+        </mxCell>
+
+        <mxCell id="project" value="Project" style="swimlane;fontStyle=1;align=center;startSize=28;fillColor=#dae8fc;strokeColor=#6c8ebf;html=1;" vertex="1" parent="1">
+          <mxGeometry x="40" y="360" width="280" height="140" as="geometry" />
+        </mxCell>
+        <mxCell id="project_fields" value="PK&amp;nbsp;&amp;nbsp;id&lt;br&gt;name&lt;br&gt;description&lt;br&gt;FK&amp;nbsp;&amp;nbsp;team_id → Team" style="text;strokeColor=none;fillColor=none;align=left;spacingLeft=12;html=1;verticalAlign=top;" vertex="1" parent="project">
+          <mxGeometry y="28" width="280" height="112" as="geometry" />
+        </mxCell>
+
+        <mxCell id="task_type" value="TaskType" style="swimlane;fontStyle=1;align=center;startSize=28;fillColor=#dae8fc;strokeColor=#6c8ebf;html=1;" vertex="1" parent="1">
+          <mxGeometry x="400" y="360" width="220" height="96" as="geometry" />
+        </mxCell>
+        <mxCell id="task_type_fields" value="PK&amp;nbsp;&amp;nbsp;id&lt;br&gt;name" style="text;strokeColor=none;fillColor=none;align=left;spacingLeft=12;html=1;verticalAlign=top;" vertex="1" parent="task_type">
+          <mxGeometry y="28" width="220" height="68" as="geometry" />
+        </mxCell>
+
+        <mxCell id="tag" value="Tag" style="swimlane;fontStyle=1;align=center;startSize=28;fillColor=#dae8fc;strokeColor=#6c8ebf;html=1;" vertex="1" parent="1">
+          <mxGeometry x="700" y="360" width="200" height="96" as="geometry" />
+        </mxCell>
+        <mxCell id="tag_fields" value="PK&amp;nbsp;&amp;nbsp;id&lt;br&gt;name" style="text;strokeColor=none;fillColor=none;align=left;spacingLeft=12;html=1;verticalAlign=top;" vertex="1" parent="tag">
+          <mxGeometry y="28" width="200" height="68" as="geometry" />
+        </mxCell>
+
+        <mxCell id="task" value="Task" style="swimlane;fontStyle=1;align=center;startSize=28;fillColor=#f8cecc;strokeColor=#b85450;html=1;" vertex="1" parent="1">
+          <mxGeometry x="40" y="600" width="420" height="250" as="geometry" />
+        </mxCell>
+        <mxCell id="task_fields" value="PK&amp;nbsp;&amp;nbsp;id&lt;br&gt;name&lt;br&gt;description&lt;br&gt;deadline&lt;br&gt;is_completed&lt;br&gt;priority (urgent / high / medium / low)&lt;br&gt;FK&amp;nbsp;&amp;nbsp;task_type_id → TaskType&lt;br&gt;FK&amp;nbsp;&amp;nbsp;project_id → Project&lt;br&gt;FK&amp;nbsp;&amp;nbsp;creator_id → Worker" style="text;strokeColor=none;fillColor=none;align=left;spacingLeft=12;html=1;verticalAlign=top;" vertex="1" parent="task">
+          <mxGeometry y="28" width="420" height="222" as="geometry" />
+        </mxCell>
+
+        <mxCell id="task_assignees" value="Task_assignees" style="swimlane;fontStyle=1;align=center;startSize=28;fillColor=#fff2cc;strokeColor=#d6b656;html=1;" vertex="1" parent="1">
+          <mxGeometry x="540" y="600" width="260" height="110" as="geometry" />
+        </mxCell>
+        <mxCell id="task_assignees_fields" value="PK&amp;nbsp;&amp;nbsp;id&lt;br&gt;FK&amp;nbsp;&amp;nbsp;task_id → Task&lt;br&gt;FK&amp;nbsp;&amp;nbsp;worker_id → Worker" style="text;strokeColor=none;fillColor=none;align=left;spacingLeft=12;html=1;verticalAlign=top;" vertex="1" parent="task_assignees">
+          <mxGeometry y="28" width="260" height="82" as="geometry" />
+        </mxCell>
+
+        <mxCell id="task_tags" value="Task_tags" style="swimlane;fontStyle=1;align=center;startSize=28;fillColor=#fff2cc;strokeColor=#d6b656;html=1;" vertex="1" parent="1">
+          <mxGeometry x="540" y="750" width="260" height="110" as="geometry" />
+        </mxCell>
+        <mxCell id="task_tags_fields" value="PK&amp;nbsp;&amp;nbsp;id&lt;br&gt;FK&amp;nbsp;&amp;nbsp;task_id → Task&lt;br&gt;FK&amp;nbsp;&amp;nbsp;tag_id → Tag" style="text;strokeColor=none;fillColor=none;align=left;spacingLeft=12;html=1;verticalAlign=top;" vertex="1" parent="task_tags">
+          <mxGeometry y="28" width="260" height="82" as="geometry" />
+        </mxCell>
+
+        <mxCell id="e_position_worker" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;endArrow=ERmany;startArrow=ERone;strokeWidth=1;" edge="1" parent="1" source="position" target="worker">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="e_position_worker_label" value="position" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];" vertex="1" connectable="0" parent="e_position_worker">
+          <mxGeometry x="-0.1" relative="1" as="geometry">
+            <mxPoint y="-12" as="offset" />
+          </mxGeometry>
+        </mxCell>
+
+        <mxCell id="e_worker_team" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;endArrow=ERmany;startArrow=ERmany;strokeWidth=1;dashed=1;" edge="1" parent="1" source="worker" target="team_members">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="e_team_members_team" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;endArrow=ERone;startArrow=ERmany;strokeWidth=1;" edge="1" parent="1" source="team_members" target="team">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+
+        <mxCell id="e_team_project" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;endArrow=ERmany;startArrow=ERone;strokeWidth=1;" edge="1" parent="1" source="team" target="project">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="1180" y="88" />
+              <mxPoint x="1180" y="430" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="e_team_project_label" value="team" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];" vertex="1" connectable="0" parent="e_team_project">
+          <mxGeometry x="0.2" relative="1" as="geometry">
+            <mxPoint y="-10" as="offset" />
+          </mxGeometry>
+        </mxCell>
+
+        <mxCell id="e_project_task" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;endArrow=ERmany;startArrow=ERone;strokeWidth=1;" edge="1" parent="1" source="project" target="task">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="e_type_task" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;endArrow=ERmany;startArrow=ERone;strokeWidth=1;" edge="1" parent="1" source="task_type" target="task">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="e_worker_creator" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;endArrow=ERmany;startArrow=ERone;strokeWidth=1;" edge="1" parent="1" source="worker" target="task">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="540" y="320" />
+              <mxPoint x="500" y="320" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="e_worker_creator_label" value="creator" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];" vertex="1" connectable="0" parent="e_worker_creator">
+          <mxGeometry x="-0.2" relative="1" as="geometry">
+            <mxPoint x="10" y="-8" as="offset" />
+          </mxGeometry>
+        </mxCell>
+
+        <mxCell id="e_assignees" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;endArrow=ERone;startArrow=ERmany;strokeWidth=1;dashed=1;" edge="1" parent="1" source="task_assignees" target="task">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="e_tags" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;endArrow=ERone;startArrow=ERmany;strokeWidth=1;dashed=1;" edge="1" parent="1" source="task_tags" target="task">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="e_tag_m2m" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;endArrow=ERone;startArrow=ERmany;strokeWidth=1;" edge="1" parent="1" source="task_tags" target="tag">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>

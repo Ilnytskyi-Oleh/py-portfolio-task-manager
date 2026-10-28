@@ -1,0 +1,31 @@
+{% extends "base.html" %}
+{% load i18n %}
+
+{% block title %}<title>{% trans "Tag form" %} — TAKT</title>{% endblock %}
+
+{% block content %}
+  <div class="page-header">
+    <div>
+      <h1 class="mb-1">{% trans "New tag" %}</h1>
+      <p class="page-lede mb-0">{% trans "Add a label the team can reuse on tasks." %}</p>
+    </div>
+  </div>
+  <form method="post" class="form-shell">
+    {% csrf_token %}
+    {% for field in form %}
+      <div class="mb-3">
+        <label class="form-label" for="{{ field.id_for_label }}">
+          {{ field.label }}
+        </label>
+        {{ field.errors }}
+        {{ field }}
+      </div>
+    {% endfor %}
+    <div class="d-flex gap-2">
+      <button type="submit" class="btn btn-primary">{% trans "Save" %}</button>
+      <a href="{% url 'tasks:tag-list' %}" class="btn btn-outline-secondary">
+        {% trans "Cancel" %}
+      </a>
+    </div>
+  </form>
+{% endblock %}

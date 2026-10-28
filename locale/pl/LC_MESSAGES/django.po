@@ -1,0 +1,512 @@
+# Polish translations for PROJECT.
+# Copyright (C) 2026 ORGANIZATION
+# This file is distributed under the same license as the PROJECT project.
+# FIRST AUTHOR <EMAIL@ADDRESS>, 2026.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: PROJECT VERSION\n"
+"Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
+"POT-Creation-Date: 2026-10-28 16:32+0000\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language: pl\n"
+"Language-Team: pl <LL@li.org>\n"
+"Plural-Forms: nplurals=3; plural=(n==1 ? 0 : n%10>=2 && n%10<=4 && (n%100<10 || "
+"n%100>=20) ? 1 : 2)\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=utf-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Generated-By: Babel 2.8.0\n"
+
+msgid "Language"
+msgstr "Język"
+
+msgid "Theme"
+msgstr "Motyw"
+
+msgid "Light"
+msgstr "Jasny"
+
+msgid "Dark"
+msgstr "Ciemny"
+
+msgid "Toggle theme"
+msgstr "Przełącz motyw"
+
+msgid "Settings"
+msgstr "Ustawienia"
+
+msgid "Open menu"
+msgstr "Otwórz menu"
+
+msgid "Menu"
+msgstr "Menu"
+
+msgid "Sign in"
+msgstr "Zaloguj się"
+
+msgid "Sign out"
+msgstr "Wyloguj się"
+
+msgid "Close"
+msgstr "Zamknij"
+
+msgid "Collapse sidebar"
+msgstr "Zwiń menu"
+
+msgid "Expand sidebar"
+msgstr "Rozwiń menu"
+
+msgid "Collapse section"
+msgstr "Zwiń sekcję"
+
+msgid "Expand section"
+msgstr "Rozwiń sekcję"
+
+msgid "Signed in as"
+msgstr "Zalogowano jako"
+
+msgid "Workspace"
+msgstr "Przestrzeń robocza"
+
+msgid "Catalog"
+msgstr "Katalog"
+
+msgid "Manage"
+msgstr "Zarządzanie"
+
+msgid "Dashboard"
+msgstr "Pulpit"
+
+msgid "Tasks"
+msgstr "Zadania"
+
+msgid "My tasks"
+msgstr "Moje zadania"
+
+msgid "Projects"
+msgstr "Projekty"
+
+msgid "Teams"
+msgstr "Zespoły"
+
+msgid "Workers"
+msgstr "Pracownicy"
+
+msgid "Tags"
+msgstr "Tagi"
+
+msgid "Task types"
+msgstr "Typy zadań"
+
+msgid "Admin"
+msgstr "Admin"
+
+msgid "Create"
+msgstr "Utwórz"
+
+msgid "Create team"
+msgstr "Utwórz zespół"
+
+msgid "Create tag"
+msgstr "Utwórz tag"
+
+msgid "Create type"
+msgstr "Utwórz typ"
+
+msgid "Complex work. Clear rhythm."
+msgstr "Złożona praca. Jasny rytm."
+
+msgid "Sign in to plan, assign and finish work with your team."
+msgstr "Zaloguj się, aby planować, przydzielać i kończyć pracę z zespołem."
+
+msgid "Could not sign in. Check your username and password, then try again."
+msgstr ""
+"Nie udało się zalogować. Sprawdź nazwę użytkownika i hasło, a następnie spróbuj "
+"ponownie."
+
+msgid "Username"
+msgstr "Nazwa użytkownika"
+
+msgid "Password"
+msgstr "Hasło"
+
+msgid "Demo:"
+msgstr "Demo:"
+
+msgid "One place for people, projects and the next step in your work."
+msgstr "Jedno miejsce na ludzi, projekty i kolejny krok w Twojej pracy."
+
+msgid "New task"
+msgstr "Nowe zadanie"
+
+msgid "Your workload"
+msgstr "Twoje obciążenie"
+
+msgid "Open tasks"
+msgstr "Otwarte zadania"
+
+msgid "Completed"
+msgstr "Ukończone"
+
+msgid "View open"
+msgstr "Zobacz otwarte"
+
+msgid "View done"
+msgstr "Zobacz ukończone"
+
+msgid "Browse, filter and prioritize team work."
+msgstr "Przeglądaj, filtruj i ustalaj priorytety pracy zespołu."
+
+msgid "Status filters"
+msgstr "Filtry statusu"
+
+msgid "All"
+msgstr "Wszystkie"
+
+msgid "Open"
+msgstr "Otwarte"
+
+msgid "Done"
+msgstr "Gotowe"
+
+msgid "Filter"
+msgstr "Filtruj"
+
+msgid "Work assigned to you — next steps first."
+msgstr "Praca przypisana do Ciebie — najpierw kolejne kroki."
+
+msgid "Name"
+msgstr "Nazwa"
+
+msgid "Project"
+msgstr "Projekt"
+
+msgid "Type"
+msgstr "Typ"
+
+msgid "Priority"
+msgstr "Priorytet"
+
+msgid "Deadline"
+msgstr "Termin"
+
+msgid "Status"
+msgstr "Status"
+
+msgid "No deadline"
+msgstr "Brak terminu"
+
+msgid "No tasks here yet"
+msgstr "Nie ma tu jeszcze zadań"
+
+msgid "Create the first task to get the team moving — or adjust filters."
+msgstr "Utwórz pierwsze zadanie, aby ruszyć pracę zespołu — albo zmień filtry."
+
+msgid "Edit"
+msgstr "Edytuj"
+
+msgid "Delete"
+msgstr "Usuń"
+
+msgid "Mark open"
+msgstr "Oznacz jako otwarte"
+
+msgid "Mark done"
+msgstr "Oznacz jako gotowe"
+
+msgid "Creator"
+msgstr "Autor"
+
+msgid "Team"
+msgstr "Zespół"
+
+msgid "Assignees"
+msgstr "Wykonawcy"
+
+msgid "Description"
+msgstr "Opis"
+
+msgid "Nobody assigned"
+msgstr "Nikt nieprzypisany"
+
+msgid "Task form"
+msgstr "Formularz zadania"
+
+msgid "Edit task"
+msgstr "Edytuj zadanie"
+
+msgid "Update details and keep ownership clear."
+msgstr "Zaktualizuj szczegóły i utrzymaj jasną odpowiedzialność."
+
+msgid "Capture the next step so the team can move."
+msgstr "Zapisz kolejny krok, aby zespół mógł iść dalej."
+
+msgid "Save"
+msgstr "Zapisz"
+
+msgid "Cancel"
+msgstr "Anuluj"
+
+msgid "Delete task"
+msgstr "Usuń zadanie"
+
+msgid "This action cannot be undone."
+msgstr "Tej czynności nie można cofnąć."
+
+#, python-format
+msgid "Delete <strong>%(name)s</strong>? You will not be able to restore it."
+msgstr "Usunąć <strong>%(name)s</strong>? Nie będzie można tego przywrócić."
+
+msgid "Initiatives owned by teams."
+msgstr "Inicjatywy należące do zespołów."
+
+msgid "New project"
+msgstr "Nowy projekt"
+
+msgid "No projects yet"
+msgstr "Nie ma jeszcze projektów"
+
+msgid "Create a project to group related tasks."
+msgstr "Utwórz projekt, aby pogrupować powiązane zadania."
+
+msgid "Team:"
+msgstr "Zespół:"
+
+msgid "Project form"
+msgstr "Formularz projektu"
+
+msgid "Edit project"
+msgstr "Edytuj projekt"
+
+msgid "Define the space where related work lives."
+msgstr "Zdefiniuj przestrzeń, w której żyje powiązana praca."
+
+msgid "Groups collaborating on projects."
+msgstr "Grupy współpracujące przy projektach."
+
+msgid "New team"
+msgstr "Nowy zespół"
+
+msgid "Members"
+msgstr "Członkowie"
+
+msgid "No teams yet"
+msgstr "Nie ma jeszcze zespołów"
+
+msgid "Create a team to start organizing people and projects."
+msgstr "Utwórz zespół, aby zacząć organizować ludzi i projekty."
+
+msgid "No members yet"
+msgstr "Nie ma jeszcze członków"
+
+msgid "Team form"
+msgstr "Formularz zespołu"
+
+msgid "Edit team"
+msgstr "Edytuj zespół"
+
+msgid "Bring people together around shared work."
+msgstr "Połącz ludzi wokół wspólnej pracy."
+
+msgid "People across positions and teams."
+msgstr "Ludzie na stanowiskach i w zespołach."
+
+msgid "Search"
+msgstr "Szukaj"
+
+msgid "Position"
+msgstr "Stanowisko"
+
+msgid "No workers found"
+msgstr "Nie znaleziono pracowników"
+
+msgid "Try another username or clear the search."
+msgstr "Spróbuj innej nazwy użytkownika albo wyczyść wyszukiwanie."
+
+msgid "No full name"
+msgstr "Brak pełnego imienia i nazwiska"
+
+msgid "No position"
+msgstr "Brak stanowiska"
+
+msgid "Not in any team"
+msgstr "Nie należy do żadnego zespołu"
+
+msgid "No open tasks"
+msgstr "Brak otwartych zadań"
+
+msgid "No completed tasks"
+msgstr "Brak ukończonych zadań"
+
+msgid "Labels used across tasks."
+msgstr "Etykiety używane w zadaniach."
+
+msgid "New tag"
+msgstr "Nowy tag"
+
+msgid "No tags yet"
+msgstr "Nie ma jeszcze tagów"
+
+msgid "Create a tag so the team can label related work."
+msgstr "Utwórz tag, aby zespół mógł oznaczać powiązaną pracę."
+
+msgid "Tag form"
+msgstr "Formularz tagu"
+
+msgid "Add a label the team can reuse on tasks."
+msgstr "Dodaj etykietę, którą zespół może ponownie używać w zadaniach."
+
+msgid "Categories for planning and reporting."
+msgstr "Kategorie do planowania i raportowania."
+
+msgid "New type"
+msgstr "Nowy typ"
+
+msgid "No task types yet"
+msgstr "Nie ma jeszcze typów zadań"
+
+msgid "Create types so planning stays consistent across teams."
+msgstr "Utwórz typy, aby planowanie było spójne między zespołami."
+
+msgid "Task type form"
+msgstr "Formularz typu zadania"
+
+msgid "New task type"
+msgstr "Nowy typ zadania"
+
+msgid "Define a category the team can plan against."
+msgstr "Zdefiniuj kategorię, względem której zespół może planować."
+
+msgid "Page navigation"
+msgstr "Nawigacja stron"
+
+msgid "Previous"
+msgstr "Poprzednia"
+
+msgid "Next"
+msgstr "Następna"
+
+#, python-format
+msgid "Page %(page)s of %(pages)s"
+msgstr "Strona %(page)s z %(pages)s"
+
+msgid "Urgent"
+msgstr "Pilny"
+
+msgid "High"
+msgstr "Wysoki"
+
+msgid "Medium"
+msgstr "Średni"
+
+msgid "Low"
+msgstr "Niski"
+
+msgid "name"
+msgstr "nazwa"
+
+msgid "description"
+msgstr "opis"
+
+msgid "deadline"
+msgstr "termin"
+
+msgid "completed"
+msgstr "ukończone"
+
+msgid "priority"
+msgstr "priorytet"
+
+msgid "task type"
+msgstr "typ zadania"
+
+msgid "task types"
+msgstr "typy zadań"
+
+msgid "project"
+msgstr "projekt"
+
+msgid "creator"
+msgstr "autor"
+
+msgid "assignees"
+msgstr "wykonawcy"
+
+msgid "tags"
+msgstr "tagi"
+
+msgid "task"
+msgstr "zadanie"
+
+msgid "tasks"
+msgstr "zadania"
+
+msgid "team"
+msgstr "zespół"
+
+msgid "teams"
+msgstr "zespoły"
+
+msgid "members"
+msgstr "członkowie"
+
+msgid "projects"
+msgstr "projekty"
+
+msgid "position"
+msgstr "stanowisko"
+
+msgid "positions"
+msgstr "stanowiska"
+
+msgid "worker"
+msgstr "pracownik"
+
+msgid "workers"
+msgstr "pracownicy"
+
+msgid "tag"
+msgstr "tag"
+
+msgid "New tags"
+msgstr "Nowe tagi"
+
+msgid "Comma-separated new tags (e.g. python-refactoring)"
+msgstr "Nowe tagi oddzielone przecinkami (np. python-refactoring)"
+
+#, python-format
+msgid "Invalid tags: %(tags)s. Use lowercase letters, digits and hyphens only."
+msgstr "Nieprawidłowe tagi: %(tags)s. Używaj tylko małych liter, cyfr i myślników."
+
+msgid "You cannot create tasks in this project."
+msgstr "Nie możesz tworzyć zadań w tym projekcie."
+
+msgid "Search by name"
+msgstr "Szukaj po nazwie"
+
+msgid "All statuses"
+msgstr "Wszystkie statusy"
+
+msgid "All priorities"
+msgstr "Wszystkie priorytety"
+
+msgid "All projects"
+msgstr "Wszystkie projekty"
+
+msgid "All tags"
+msgstr "Wszystkie tagi"
+
+msgid "All teams"
+msgstr "Wszystkie zespoły"
+
+msgid "You cannot manage projects for this team."
+msgstr "Nie możesz zarządzać projektami tego zespołu."
+
+msgid "Search by username"
+msgstr "Szukaj po nazwie użytkownika"
+
+msgid "Use lowercase letters, digits and hyphens only."
+msgstr "Używaj tylko małych liter, cyfr i myślników."
+

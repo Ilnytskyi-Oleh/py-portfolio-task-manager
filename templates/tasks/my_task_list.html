@@ -1,0 +1,66 @@
+{% extends "base.html" %}
+{% load i18n query_extras %}
+
+{% block title %}<title>{% trans "My tasks" %} — TAKT</title>{% endblock %}
+
+{% block content %}
+  <div class="page-header">
+    <div>
+      <h1 class="mb-1">{% trans "My tasks" %}</h1>
+      <p class="page-lede mb-0">{% trans "Work assigned to you — next steps first." %}</p>
+    </div>
+    <div class="page-actions">
+      <a class="btn btn-primary" href="{% url 'tasks:task-create' %}">
+        {% trans "New task" %}
+      </a>
+    </div>
+  </div>
+
+  <div class="filter-panel">
+    <div class="filter-chips" role="tablist" aria-label="{% trans 'Status filters' %}">
+      <a class="filter-chip{% if not status_filter %} active{% endif %}"
+         href="{% url_replace status='' page=None %}">{% trans "All" %}</a>
+      <a class="filter-chip{% if status_filter == 'open' %} active{% endif %}"
+         href="{% url_replace status='open' page=None %}">{% trans "Open" %}</a>
+      <a class="filter-chip{% if status_filter == 'done' %} active{% endif %}"
+         href="{% url_replace status='done' page=None %}">{% trans "Done" %}</a>
+    </div>
+
+    <form method="get" class="row g-2 filter-bar">
+      {% if current_sort %}
+        <input type="hidden" name="sort" value="{{ current_sort }}">
+      {% endif %}
+      {% if current_dir %}
+        <input type="hidden" name="dir" value="{{ current_dir }}">
+      {% endif %}
+      <div class="col-12 col-sm-6 col-lg-3">{{ search_form.name }}</div>
+      <div class="col-6 col-sm-3 col-lg-2">{{ search_form.priority }}</div>
+      <div class="col-6 col-sm-3 col-lg-2">{{ search_form.project }}</div>
+      <div class="col-6 col-sm-4 col-lg-2">{{ search_form.tag }}</div>
+      <div class="col-6 col-sm-4 col-lg-2">{{ search_form.team }}</div>
+      <div class="col-12 col-sm-4 col-lg-1">
+        <button
+          class="btn btn-outline-secondary w-100 btn-filter-icon"
+          type="submit"
+          title="{% trans 'Filter' %}"
+          aria-label="{% trans 'Filter' %}"
+        >
+          <svg class="btn-filter-svg" viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+            <path
+              d="M4 6h16M7 12h10M10 18h4"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="1.75"
+              stroke-linecap="round"
+            />
+          </svg>
+        </button>
+      </div>
+      {% if status_filter %}
+        <input type="hidden" name="status" value="{{ status_filter }}">
+      {% endif %}
+    </form>
+  </div>
+
+  {% include "tasks/includes/task_table.html" %}
+{% endblock %}

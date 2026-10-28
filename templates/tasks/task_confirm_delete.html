@@ -1,0 +1,25 @@
+{% extends "base.html" %}
+{% load i18n %}
+
+{% block title %}<title>{% trans "Delete task" %} — TAKT</title>{% endblock %}
+
+{% block content %}
+  <div class="page-header">
+    <div>
+      <h1 class="mb-1">{% trans "Delete task" %}</h1>
+      <p class="page-lede mb-0">{% trans "This action cannot be undone." %}</p>
+    </div>
+  </div>
+  <div class="confirm-panel">
+    <p class="mb-4">
+      {% blocktrans with name=object.name %}Delete <strong>{{ name }}</strong>? You will not be able to restore it.{% endblocktrans %}
+    </p>
+    <form method="post" class="d-flex flex-wrap gap-2">
+      {% csrf_token %}
+      <button type="submit" class="btn btn-danger">{% trans "Delete task" %}</button>
+      <a href="{{ object.get_absolute_url }}" class="btn btn-outline-secondary">
+        {% trans "Cancel" %}
+      </a>
+    </form>
+  </div>
+{% endblock %}

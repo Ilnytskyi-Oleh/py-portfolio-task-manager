@@ -1,0 +1,60 @@
+{% extends "base.html" %}
+{% load i18n %}
+
+{% block title %}<title>{% trans "Workers" %} — TAKT</title>{% endblock %}
+
+{% block content %}
+  <div class="page-header">
+    <div>
+      <h1 class="mb-1">{% trans "Workers" %}</h1>
+      <p class="page-lede mb-0">{% trans "People across positions and teams." %}</p>
+    </div>
+  </div>
+  <form method="get" class="row g-2 mb-3 filter-panel filter-bar">
+    <div class="col-12 col-sm-8 col-md-4">{{ search_form.username }}</div>
+    <div class="col-12 col-sm-4 col-md-2">
+      <button class="btn btn-outline-secondary w-100" type="submit">
+        {% trans "Search" %}
+      </button>
+    </div>
+  </form>
+  <div class="table-shell table-responsive">
+    <table class="table tm-table">
+      <thead>
+      <tr>
+        <th>{% trans "Username" %}</th>
+        <th class="d-none d-sm-table-cell">{% trans "Name" %}</th>
+        <th>{% trans "Position" %}</th>
+        <th>{% trans "Open" %}</th>
+        <th>{% trans "Done" %}</th>
+      </tr>
+      </thead>
+      <tbody>
+      {% for worker in worker_list %}
+        <tr data-href="{{ worker.get_absolute_url }}">
+          <td>
+            <a class="task-name" href="{{ worker.get_absolute_url }}">
+              {{ worker.username }}
+            </a>
+          </td>
+          <td class="d-none d-sm-table-cell">
+            {{ worker.get_full_name|default:"—" }}
+          </td>
+          <td>{{ worker.position|default:"—" }}</td>
+          <td>{{ worker.open_tasks }}</td>
+          <td>{{ worker.done_tasks }}</td>
+        </tr>
+      {% empty %}
+        <tr>
+          <td colspan="5">
+            <div class="empty-state border-0 bg-transparent py-4">
+              <h2>{% trans "No workers found" %}</h2>
+              <p>{% trans "Try another username or clear the search." %}</p>
+            </div>
+          </td>
+        </tr>
+      {% endfor %}
+      </tbody>
+    </table>
+  </div>
+{% endblock %}

@@ -1,0 +1,90 @@
+{% extends "base.html" %}
+{% load i18n task_perms %}
+
+{% block title %}<title>{{ task.name }} — TAKT</title>{% endblock %}
+
+{% block content %}
+  <div class="page-header align-items-start">
+    <div class="me-auto">
+      <h1 class="mb-1">{{ task.name }}</h1>
+      <p class="page-lede mb-0">
+        {{ task.project.name }} · {{ task.task_type.name }}
+      </p>
+    </div>
+    {% if request.user|can_manage_task:task %}
+      <div class="detail-actions">
+        <a class="btn btn-outline-primary"
+           href="{% url 'tasks:task-update' pk=task.pk %}">{% trans "Edit" %}</a>
+        <a class="btn btn-outline-danger"
+           href="{% url 'tasks:task-delete' pk=task.pk %}">{% trans "Delete" %}</a>
+      </div>
+    {% endif %}
+  </div>
+
+  <div class="detail-panel mb-3">
+    <dl class="row mb-0">
+      <dt class="col-12 col-sm-3">{% trans "Status" %}</dt>
+      <dd class="col-12 col-sm-9">
+        {% if task.is_completed %}
+          <span class="badge-status-done">{% trans "Completed" %}</span>
+        {% else %}
+          <span class="badge-status-open">{% trans "Open" %}</span>
+        {% endif %}
+        {% if request.user|can_manage_task:task %}
+          <form method="post"
+                action="{% url 'tasks:task-toggle-complete' pk=task.pk %}"
+                class="d-inline-block mt-2 mt-sm-0 ms-sm-2">
+            {% csrf_token %}
+            <button class="btn btn-sm btn-outline-secondary" type="submit">
+              {% if task.is_completed %}{% trans "Mark open" %}{% else %}{% trans "Mark done" %}{% endif %}
+            </button>
+          </form>
+        {% endif %}
+      </dd>
+      <dt class="col-12 col-sm-3">{% trans "Priority" %}</dt>
+      <dd class="col-12 col-sm-9">
+        <span class="badge-priority-{{ task.priority }}">
+          {{ task.get_priority_display }}
+        </span>
+      </dd>
+      <dt class="col-12 col-sm-3">{% trans "Deadline" %}</dt>
+      <dd class="col-12 col-sm-9">{{ task.deadline|default:"—" }}</dd>
+      <dt class="col-12 col-sm-3">{% trans "Creator" %}</dt>
+      <dd class="col-12 col-sm-9">
+        {% if task.creator %}
+          <a href="{{ task.creator.get_absolute_url }}">
+            {{ task.creator }}
+          </a>
+        {% else %}
+          —
+        {% endif %}
+      </dd>
+      <dt class="col-12 col-sm-3">{% trans "Team" %}</dt>
+      <dd class="col-12 col-sm-9">
+        <a href="{{ task.project.team.get_absolute_url }}">
+          {{ task.project.team.name }}
+        </a>
+      </dd>
+      <dt class="col-12 col-sm-3">{% trans "Assignees" %}</dt>
+      <dd class="col-12 col-sm-9">
+        {% for worker in task.assignees.all %}
+          <a href="{{ worker.get_absolute_url }}">{{ worker.username }}</a>{% if not forloop.last %}, {% endif %}
+        {% empty %}
+          {% trans "Nobody assigned" %}
+        {% endfor %}
+      </dd>
+      <dt class="col-12 col-sm-3">{% trans "Tags" %}</dt>
+      <dd class="col-12 col-sm-9">
+        {% for tag in task.tags.all %}
+          <span class="tag-chip">{{ tag.name }}</span>
+        {% empty %}
+          —
+        {% endfor %}
+      </dd>
+      <dt class="col-12 col-sm-3">{% trans "Description" %}</dt>
+      <dd class="col-12 col-sm-9">
+        {{ task.description|linebreaksbr|default:"—" }}
+      </dd>
+    </dl>
+  </div>
+{% endblock %}

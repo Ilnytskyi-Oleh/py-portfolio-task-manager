@@ -1,0 +1,173 @@
+{% load i18n query_extras %}
+{% if task_list %}
+  <div class="table-responsive table-desktop table-shell">
+    <table class="table tm-table">
+      <thead>
+      <tr>
+        <th class="col-sticky{% if current_sort == 'name' %} is-sorted{% endif %}">
+          {% if current_sort is not None %}
+            <a href="{% sort_link 'name' %}">
+              {% trans "Name" %}
+              <span class="sort-ind">
+                {% if current_sort == 'name' %}{% if current_dir == 'asc' %}↑{% else %}↓{% endif %}{% else %}↕{% endif %}
+              </span>
+            </a>
+          {% else %}
+            {% trans "Name" %}
+          {% endif %}
+        </th>
+        <th class="{% if current_sort == 'project' %}is-sorted{% endif %}">
+          {% if current_sort is not None %}
+            <a href="{% sort_link 'project' %}">
+              {% trans "Project" %}
+              <span class="sort-ind">
+                {% if current_sort == 'project' %}{% if current_dir == 'asc' %}↑{% else %}↓{% endif %}{% else %}↕{% endif %}
+              </span>
+            </a>
+          {% else %}
+            {% trans "Project" %}
+          {% endif %}
+        </th>
+        <th>{% trans "Type" %}</th>
+        <th class="{% if current_sort == 'priority' %}is-sorted{% endif %}">
+          {% if current_sort is not None %}
+            <a href="{% sort_link 'priority' %}">
+              {% trans "Priority" %}
+              <span class="sort-ind">
+                {% if current_sort == 'priority' %}{% if current_dir == 'asc' %}↑{% else %}↓{% endif %}{% else %}↕{% endif %}
+              </span>
+            </a>
+          {% else %}
+            {% trans "Priority" %}
+          {% endif %}
+        </th>
+        <th class="{% if current_sort == 'deadline' %}is-sorted{% endif %}">
+          {% if current_sort is not None %}
+            <a href="{% sort_link 'deadline' %}">
+              {% trans "Deadline" %}
+              <span class="sort-ind">
+                {% if current_sort == 'deadline' %}{% if current_dir == 'asc' %}↑{% else %}↓{% endif %}{% else %}↕{% endif %}
+              </span>
+            </a>
+          {% else %}
+            {% trans "Deadline" %}
+          {% endif %}
+        </th>
+        <th class="{% if current_sort == 'status' %}is-sorted{% endif %}">
+          {% if current_sort is not None %}
+            <a href="{% sort_link 'status' %}">
+              {% trans "Status" %}
+              <span class="sort-ind">
+                {% if current_sort == 'status' %}{% if current_dir == 'asc' %}↑{% else %}↓{% endif %}{% else %}↕{% endif %}
+              </span>
+            </a>
+          {% else %}
+            {% trans "Status" %}
+          {% endif %}
+        </th>
+        <th>{% trans "Tags" %}</th>
+      </tr>
+      </thead>
+      <tbody>
+      {% for task in task_list %}
+        <tr data-href="{{ task.get_absolute_url }}">
+          <td class="col-sticky">
+            <a class="task-name" href="{{ task.get_absolute_url }}">
+              {{ task.name }}
+            </a>
+          </td>
+          <td>
+            <a href="{{ task.project.get_absolute_url }}">
+              {{ task.project.name }}
+            </a>
+          </td>
+          <td>{{ task.task_type.name }}</td>
+          <td>
+            <span class="badge-priority-{{ task.priority }}">
+              {{ task.get_priority_display }}
+            </span>
+          </td>
+          <td>
+            {% if task.deadline %}
+              {% if not task.is_completed and today and task.deadline < today %}
+                <span class="deadline-overdue">{{ task.deadline }}</span>
+              {% else %}
+                {{ task.deadline }}
+              {% endif %}
+            {% else %}
+              —
+            {% endif %}
+          </td>
+          <td>
+            {% if task.is_completed %}
+              <span class="badge-status-done">{% trans "Done" %}</span>
+            {% else %}
+              <span class="badge-status-open">{% trans "Open" %}</span>
+            {% endif %}
+          </td>
+          <td>
+            {% for tag in task.tags.all %}
+              <span class="tag-chip">{{ tag.name }}</span>
+            {% empty %}
+              —
+            {% endfor %}
+          </td>
+        </tr>
+      {% endfor %}
+      </tbody>
+    </table>
+  </div>
+
+  <div class="task-mobile-list d-md-none">
+    {% for task in task_list %}
+      <article class="task-mobile-card">
+        <div class="task-title">
+          <a href="{{ task.get_absolute_url }}">{{ task.name }}</a>
+        </div>
+        <div class="task-mobile-meta">
+          {% if task.is_completed %}
+            <span class="badge-status-done">{% trans "Done" %}</span>
+          {% else %}
+            <span class="badge-status-open">{% trans "Open" %}</span>
+          {% endif %}
+          <span class="badge-priority-{{ task.priority }}">
+            {{ task.get_priority_display }}
+          </span>
+          <span class="tag-chip">{{ task.task_type.name }}</span>
+        </div>
+        <div class="task-mobile-footer">
+          <span>
+            <a href="{{ task.project.get_absolute_url }}">
+              {{ task.project.name }}
+            </a>
+          </span>
+          <span>·</span>
+          {% if task.deadline %}
+            {% if not task.is_completed and today and task.deadline < today %}
+              <span class="deadline-overdue">{{ task.deadline }}</span>
+            {% else %}
+              <span>{{ task.deadline }}</span>
+            {% endif %}
+          {% else %}
+            <span>{% trans "No deadline" %}</span>
+          {% endif %}
+        </div>
+        {% if task.tags.all %}
+          <div class="mt-2">
+            {% for tag in task.tags.all %}
+              <span class="tag-chip">{{ tag.name }}</span>
+            {% endfor %}
+          </div>
+        {% endif %}
+      </article>
+    {% endfor %}
+  </div>
+{% else %}
+  <div class="empty-state">
+    <h2>{% trans "No tasks here yet" %}</h2>
+    <p>{% trans "Create the first task to get the team moving — or adjust filters." %}</p>
+    <a class="btn btn-primary" href="{% url 'tasks:task-create' %}">
+      {% trans "New task" %}
+    </a>
+  </div>
+{% endif %}

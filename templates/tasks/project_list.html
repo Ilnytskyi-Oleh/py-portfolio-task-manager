@@ -1,0 +1,57 @@
+{% extends "base.html" %}
+{% load i18n %}
+
+{% block title %}<title>{% trans "Projects" %} — TAKT</title>{% endblock %}
+
+{% block content %}
+  <div class="page-header">
+    <div>
+      <h1 class="mb-1">{% trans "Projects" %}</h1>
+      <p class="page-lede mb-0">{% trans "Initiatives owned by teams." %}</p>
+    </div>
+    {% if user.is_staff or user.teams.exists %}
+      <div class="page-actions">
+        <a class="btn btn-primary" href="{% url 'tasks:project-create' %}">
+          {% trans "New project" %}
+        </a>
+      </div>
+    {% endif %}
+  </div>
+  <div class="table-shell table-responsive">
+    <table class="table tm-table">
+      <thead>
+      <tr>
+        <th>{% trans "Name" %}</th>
+        <th>{% trans "Team" %}</th>
+        <th>{% trans "Tasks" %}</th>
+      </tr>
+      </thead>
+      <tbody>
+      {% for project in project_list %}
+        <tr data-href="{{ project.get_absolute_url }}">
+          <td>
+            <a class="task-name" href="{{ project.get_absolute_url }}">
+              {{ project.name }}
+            </a>
+          </td>
+          <td>
+            <a href="{{ project.team.get_absolute_url }}">
+              {{ project.team.name }}
+            </a>
+          </td>
+          <td>{{ project.task_count }}</td>
+        </tr>
+      {% empty %}
+        <tr>
+          <td colspan="3">
+            <div class="empty-state border-0 bg-transparent py-4">
+              <h2>{% trans "No projects yet" %}</h2>
+              <p>{% trans "Create a project to group related tasks." %}</p>
+            </div>
+          </td>
+        </tr>
+      {% endfor %}
+      </tbody>
+    </table>
+  </div>
+{% endblock %}
