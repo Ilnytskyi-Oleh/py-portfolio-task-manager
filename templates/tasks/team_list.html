@@ -1,17 +1,17 @@
 {% extends "base.html" %}
 
-{% block title %}<title>Teams — Task Manager</title>{% endblock %}
+{% block title %}<title>Teams — TAKT</title>{% endblock %}
 
 {% block content %}
   <div class="page-header">
     <div>
       <h1 class="mb-1">Teams</h1>
-      <p class="text-muted mb-0">Groups collaborating on projects.</p>
+      <p class="page-lede mb-0">Groups collaborating on projects.</p>
     </div>
     {% if user.is_staff %}
       <div class="page-actions">
         <a class="btn btn-primary" href="{% url 'tasks:team-create' %}">
-          Create team
+          New team
         </a>
       </div>
     {% endif %}
@@ -37,7 +37,14 @@
           <td>{{ team.project_count }}</td>
         </tr>
       {% empty %}
-        <tr><td colspan="3">No teams yet.</td></tr>
+        <tr>
+          <td colspan="3">
+            <div class="empty-state border-0 bg-transparent py-4">
+              <h2>No teams yet</h2>
+              <p>Create a team to start organizing people and projects.</p>
+            </div>
+          </td>
+        </tr>
       {% endfor %}
       </tbody>
     </table>

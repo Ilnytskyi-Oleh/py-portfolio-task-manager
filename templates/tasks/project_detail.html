@@ -1,13 +1,13 @@
 {% extends "base.html" %}
 {% load task_perms %}
 
-{% block title %}<title>{{ project.name }} — Task Manager</title>{% endblock %}
+{% block title %}<title>{{ project.name }} — TAKT</title>{% endblock %}
 
 {% block content %}
   <div class="page-header align-items-start">
     <div class="me-auto">
       <h1 class="mb-1">{{ project.name }}</h1>
-      <p class="text-muted mb-0">
+      <p class="page-lede mb-0">
         Team:
         <a href="{{ project.team.get_absolute_url }}">
           {{ project.team.name }}
@@ -23,10 +23,12 @@
   </div>
 
   {% if project.description %}
-    <p class="text-muted">{{ project.description|linebreaksbr }}</p>
+    <div class="detail-panel mb-4">
+      {{ project.description|linebreaksbr }}
+    </div>
   {% endif %}
 
-  <h2 class="h4 mt-4 mb-3">Tasks</h2>
+  <h2 class="section-title">Tasks</h2>
   {% with task_list=project.tasks.all current_sort=None current_dir=None %}
     {% include "tasks/includes/task_table.html" %}
   {% endwith %}

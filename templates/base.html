@@ -1,13 +1,14 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  {% block title %}<title>Task Manager</title>{% endblock %}
+  {% block title %}<title>TAKT</title>{% endblock %}
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#111318">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link
-    href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,600&family=Manrope:wght@400;500;600;700&display=swap"
+    href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Space+Grotesk:wght@500;600;700&display=swap"
     rel="stylesheet"
   >
   <link
@@ -32,16 +33,14 @@
     >
       Menu
     </button>
-    <a class="navbar-brand mb-0" href="{% url 'tasks:index' %}">
-      Task Manager
-    </a>
+    {% include "includes/brand.html" with compact=1 %}
     {% if user.is_authenticated %}
       <a class="btn btn-outline-light btn-sm"
          href="{% url 'tasks:worker-detail' pk=user.pk %}">
         {{ user.username }}
       </a>
     {% else %}
-      <a class="btn btn-primary btn-sm" href="{% url 'login' %}">Login</a>
+      <a class="btn btn-primary btn-sm" href="{% url 'login' %}">Sign in</a>
     {% endif %}
   </div>
 </nav>
@@ -53,9 +52,8 @@
   aria-labelledby="mobileNavLabel"
 >
   <div class="offcanvas-header">
-    <h5 class="offcanvas-title" id="mobileNavLabel"
-        style="font-family: var(--tm-font-display);">
-      Task Manager
+    <h5 class="offcanvas-title" id="mobileNavLabel">
+      {% include "includes/brand.html" with compact=1 %}
     </h5>
     <button
       type="button"

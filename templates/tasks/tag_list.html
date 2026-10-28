@@ -1,17 +1,17 @@
 {% extends "base.html" %}
 
-{% block title %}<title>Tags — Task Manager</title>{% endblock %}
+{% block title %}<title>Tags — TAKT</title>{% endblock %}
 
 {% block content %}
   <div class="page-header">
     <div>
       <h1 class="mb-1">Tags</h1>
-      <p class="text-muted mb-0">Labels used across tasks.</p>
+      <p class="page-lede mb-0">Labels used across tasks.</p>
     </div>
     {% if user.is_staff %}
       <div class="page-actions">
         <a class="btn btn-primary" href="{% url 'tasks:tag-create' %}">
-          Create tag
+          New tag
         </a>
       </div>
     {% endif %}
@@ -28,7 +28,12 @@
   {% else %}
     <div class="empty-state">
       <h2>No tags yet</h2>
-      <p>Tags appear as you label tasks.</p>
+      <p>Create a tag so the team can label related work.</p>
+      {% if user.is_staff %}
+        <a class="btn btn-primary" href="{% url 'tasks:tag-create' %}">
+          New tag
+        </a>
+      {% endif %}
     </div>
   {% endif %}
 {% endblock %}

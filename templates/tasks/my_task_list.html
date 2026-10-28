@@ -1,17 +1,17 @@
 {% extends "base.html" %}
 {% load query_extras %}
 
-{% block title %}<title>My tasks — Task Manager</title>{% endblock %}
+{% block title %}<title>My tasks — TAKT</title>{% endblock %}
 
 {% block content %}
   <div class="page-header">
     <div>
       <h1 class="mb-1">My tasks</h1>
-      <p class="text-muted mb-0">Work assigned to you.</p>
+      <p class="page-lede mb-0">Work assigned to you — next steps first.</p>
     </div>
     <div class="page-actions">
       <a class="btn btn-primary" href="{% url 'tasks:task-create' %}">
-        Create task
+        New task
       </a>
     </div>
   </div>

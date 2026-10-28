@@ -1,12 +1,21 @@
 {% extends "base.html" %}
 
-{% block title %}<title>Dashboard — Task Manager</title>{% endblock %}
+{% block title %}<title>Dashboard — TAKT</title>{% endblock %}
 
 {% block content %}
-  <h1 class="mb-2">Dashboard</h1>
-  <p class="text-muted mb-4">
-    Overview of people, projects and your personal workload.
-  </p>
+  <div class="page-header align-items-end">
+    <div>
+      <h1 class="mb-1">Dashboard</h1>
+      <p class="page-lede mb-0">
+        One place for people, projects and the next step in your work.
+      </p>
+    </div>
+    <div class="page-actions">
+      <a class="btn btn-primary" href="{% url 'tasks:task-create' %}">
+        New task
+      </a>
+    </div>
+  </div>
 
   <div class="row g-3 mb-4 stat-grid">
     <div class="col-6 col-md-3">
@@ -35,10 +44,11 @@
     </div>
   </div>
 
+  <h2 class="section-title">Your workload</h2>
   <div class="row g-3">
     <div class="col-12 col-md-6">
       <div class="accent-panel open">
-        <h2 class="h5 mb-1">My open tasks</h2>
+        <h3 class="h5 mb-1">Open tasks</h3>
         <p class="display-title mb-3" style="font-size: 2rem;">
           {{ my_open_tasks }}
         </p>
@@ -50,7 +60,7 @@
     </div>
     <div class="col-12 col-md-6">
       <div class="accent-panel done">
-        <h2 class="h5 mb-1">My completed tasks</h2>
+        <h3 class="h5 mb-1">Completed</h3>
         <p class="display-title mb-3" style="font-size: 2rem;">
           {{ my_done_tasks }}
         </p>

@@ -1,0 +1,23 @@
+{% comment %}
+  Brand mark + optional wordmark.
+  Usage:
+    {% include "includes/brand.html" %}
+    {% include "includes/brand.html" with compact=1 %}
+    {% include "includes/brand.html" with mark_only=1 %}
+    {% include "includes/brand.html" with large=1 %}
+{% endcomment %}
+{% if mark_only %}
+  <span class="brand-mark{% if large %} brand-mark-lg{% endif %}" aria-hidden="true">
+    <span></span><span></span><span></span><span></span>
+  </span>
+{% else %}
+  <a
+    href="{% url 'tasks:index' %}"
+    class="brand-wordmark{% if compact %} brand-wordmark-sm{% endif %}"
+  >
+    <span class="brand-mark{% if large %} brand-mark-lg{% endif %}" aria-hidden="true">
+      <span></span><span></span><span></span><span></span>
+    </span>
+    <span class="brand-name">TAKT</span>
+  </a>
+{% endif %}

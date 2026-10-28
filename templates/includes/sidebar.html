@@ -1,10 +1,8 @@
 {% with url_name=request.resolver_match.url_name %}
 <div class="px-1">
-  <h4 class="brand mb-3">
-    <a href="{% url 'tasks:index' %}" class="text-decoration-none">
-      Task Manager
-    </a>
-  </h4>
+  <div class="brand mb-3">
+    {% include "includes/brand.html" %}
+  </div>
 
   {% if user.is_authenticated %}
     <p class="small text-muted mb-1">Signed in as</p>
@@ -13,7 +11,9 @@
         {{ user.username }}
       </a>
     </p>
-    <ul class="nav flex-column gap-1 mb-3" data-nav>
+
+    <div class="nav-section">Workspace</div>
+    <ul class="nav flex-column gap-1 mb-1" data-nav>
       <li class="nav-item">
         <a class="nav-link{% if url_name == 'index' %} active{% endif %}"
            href="{% url 'tasks:index' %}">Dashboard</a>
@@ -38,6 +38,10 @@
         <a class="nav-link{% if url_name == 'worker-list' or url_name == 'worker-detail' %} active{% endif %}"
            href="{% url 'tasks:worker-list' %}">Workers</a>
       </li>
+    </ul>
+
+    <div class="nav-section">Catalog</div>
+    <ul class="nav flex-column gap-1 mb-3" data-nav>
       <li class="nav-item">
         <a class="nav-link{% if url_name == 'tag-list' %} active{% endif %}"
            href="{% url 'tasks:tag-list' %}">Tags</a>
@@ -48,8 +52,12 @@
           Task types
         </a>
       </li>
-      {% if user.is_staff %}
-        <li class="nav-item mt-2">
+    </ul>
+
+    {% if user.is_staff %}
+      <div class="nav-section">Manage</div>
+      <ul class="nav flex-column gap-1 mb-3" data-nav>
+        <li class="nav-item">
           <a class="nav-link" href="{% url 'admin:index' %}">Admin</a>
         </li>
         <li class="nav-item">
@@ -70,17 +78,18 @@
             Create type
           </a>
         </li>
-      {% endif %}
-    </ul>
+      </ul>
+    {% endif %}
+
     <form method="post" action="{% url 'logout' %}">
       {% csrf_token %}
       <button type="submit" class="btn btn-logout btn-sm w-100">
-        Logout
+        Sign out
       </button>
     </form>
   {% else %}
     <a class="btn btn-primary btn-sm w-100" href="{% url 'login' %}">
-      Login
+      Sign in
     </a>
   {% endif %}
 </div>

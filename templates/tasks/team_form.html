@@ -1,12 +1,17 @@
 {% extends "base.html" %}
 
-{% block title %}<title>Team form — Task Manager</title>{% endblock %}
+{% block title %}<title>Team form — TAKT</title>{% endblock %}
 
 {% block content %}
-  <h1 class="mb-3">
-    {% if object %}Edit team{% else %}Create team{% endif %}
-  </h1>
-  <form method="post" class="card task-card card-body">
+  <div class="page-header">
+    <div>
+      <h1 class="mb-1">
+        {% if object %}Edit team{% else %}New team{% endif %}
+      </h1>
+      <p class="page-lede mb-0">Bring people together around shared work.</p>
+    </div>
+  </div>
+  <form method="post" class="form-shell">
     {% csrf_token %}
     {% for field in form %}
       <div class="mb-3">
@@ -17,6 +22,11 @@
         {{ field }}
       </div>
     {% endfor %}
-    <button type="submit" class="btn btn-primary">Save</button>
+    <div class="d-flex gap-2">
+      <button type="submit" class="btn btn-primary">Save</button>
+      <a href="{% url 'tasks:team-list' %}" class="btn btn-outline-secondary">
+        Cancel
+      </a>
+    </div>
   </form>
 {% endblock %}

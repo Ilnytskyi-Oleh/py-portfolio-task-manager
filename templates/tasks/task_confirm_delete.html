@@ -1,15 +1,24 @@
 {% extends "base.html" %}
 
-{% block title %}<title>Delete task — Task Manager</title>{% endblock %}
+{% block title %}<title>Delete task — TAKT</title>{% endblock %}
 
 {% block content %}
-  <h1 class="mb-3">Delete task</h1>
-  <p>Are you sure you want to delete <strong>{{ object.name }}</strong>?</p>
-  <form method="post">
-    {% csrf_token %}
-    <button type="submit" class="btn btn-danger">Confirm</button>
-    <a href="{{ object.get_absolute_url }}" class="btn btn-outline-secondary">
-      Cancel
-    </a>
-  </form>
+  <div class="page-header">
+    <div>
+      <h1 class="mb-1">Delete task</h1>
+      <p class="page-lede mb-0">This action cannot be undone.</p>
+    </div>
+  </div>
+  <div class="confirm-panel">
+    <p class="mb-4">
+      Delete <strong>{{ object.name }}</strong>? You will not be able to restore it.
+    </p>
+    <form method="post" class="d-flex flex-wrap gap-2">
+      {% csrf_token %}
+      <button type="submit" class="btn btn-danger">Delete task</button>
+      <a href="{{ object.get_absolute_url }}" class="btn btn-outline-secondary">
+        Cancel
+      </a>
+    </form>
+  </div>
 {% endblock %}
