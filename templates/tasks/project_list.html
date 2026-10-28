@@ -1,0 +1,49 @@
+{% extends "base.html" %}
+
+{% block title %}<title>Projects — Task Manager</title>{% endblock %}
+
+{% block content %}
+  <div class="page-header">
+    <div>
+      <h1 class="mb-1">Projects</h1>
+      <p class="text-muted mb-0">Initiatives owned by teams.</p>
+    </div>
+    {% if user.is_staff or user.teams.exists %}
+      <div class="page-actions">
+        <a class="btn btn-primary" href="{% url 'tasks:project-create' %}">
+          Create project
+        </a>
+      </div>
+    {% endif %}
+  </div>
+  <div class="table-shell table-responsive">
+    <table class="table tm-table">
+      <thead>
+      <tr>
+        <th>Name</th>
+        <th>Team</th>
+        <th>Tasks</th>
+      </tr>
+      </thead>
+      <tbody>
+      {% for project in project_list %}
+        <tr data-href="{{ project.get_absolute_url }}">
+          <td>
+            <a class="task-name" href="{{ project.get_absolute_url }}">
+              {{ project.name }}
+            </a>
+          </td>
+          <td>
+            <a href="{{ project.team.get_absolute_url }}">
+              {{ project.team.name }}
+            </a>
+          </td>
+          <td>{{ project.task_count }}</td>
+        </tr>
+      {% empty %}
+        <tr><td colspan="3">No projects yet.</td></tr>
+      {% endfor %}
+      </tbody>
+    </table>
+  </div>
+{% endblock %}

@@ -1,0 +1,64 @@
+{% extends "base.html" %}
+
+{% block title %}<title>Dashboard — Task Manager</title>{% endblock %}
+
+{% block content %}
+  <h1 class="mb-2">Dashboard</h1>
+  <p class="text-muted mb-4">
+    Overview of people, projects and your personal workload.
+  </p>
+
+  <div class="row g-3 mb-4 stat-grid">
+    <div class="col-6 col-md-3">
+      <div class="stat-tile">
+        <div class="label">Workers</div>
+        <div class="value">{{ num_workers }}</div>
+      </div>
+    </div>
+    <div class="col-6 col-md-3">
+      <div class="stat-tile">
+        <div class="label">Teams</div>
+        <div class="value">{{ num_teams }}</div>
+      </div>
+    </div>
+    <div class="col-6 col-md-3">
+      <div class="stat-tile">
+        <div class="label">Projects</div>
+        <div class="value">{{ num_projects }}</div>
+      </div>
+    </div>
+    <div class="col-6 col-md-3">
+      <div class="stat-tile">
+        <div class="label">Tasks</div>
+        <div class="value">{{ num_tasks }}</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="row g-3">
+    <div class="col-12 col-md-6">
+      <div class="accent-panel open">
+        <h2 class="h5 mb-1">My open tasks</h2>
+        <p class="display-title mb-3" style="font-size: 2rem;">
+          {{ my_open_tasks }}
+        </p>
+        <a class="btn btn-sm btn-outline-secondary"
+           href="{% url 'tasks:my-task-list' %}?status=open">
+          View open
+        </a>
+      </div>
+    </div>
+    <div class="col-12 col-md-6">
+      <div class="accent-panel done">
+        <h2 class="h5 mb-1">My completed tasks</h2>
+        <p class="display-title mb-3" style="font-size: 2rem;">
+          {{ my_done_tasks }}
+        </p>
+        <a class="btn btn-sm btn-outline-secondary"
+           href="{% url 'tasks:my-task-list' %}?status=done">
+          View done
+        </a>
+      </div>
+    </div>
+  </div>
+{% endblock %}

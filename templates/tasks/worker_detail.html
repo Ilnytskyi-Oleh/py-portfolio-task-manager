@@ -1,0 +1,50 @@
+{% extends "base.html" %}
+
+{% block title %}<title>{{ worker.username }} — Task Manager</title>{% endblock %}
+
+{% block content %}
+  <h1 class="mb-1">{{ worker.username }}</h1>
+  <p class="text-muted">
+    {{ worker.get_full_name|default:"No full name" }}
+    · {{ worker.position|default:"No position" }}
+  </p>
+
+  <h2 class="h4 mt-4">Teams</h2>
+  <ul>
+    {% for team in worker.teams.all %}
+      <li><a href="{{ team.get_absolute_url }}">{{ team.name }}</a></li>
+    {% empty %}
+      <li class="text-muted">Not in any team</li>
+    {% endfor %}
+  </ul>
+
+  <div class="row g-4 mt-1">
+    <div class="col-12 col-md-6">
+      <h2 class="h4">Incomplete tasks</h2>
+      <ul class="list-group">
+        {% for task in incomplete_tasks %}
+          <li class="list-group-item d-flex flex-wrap justify-content-between gap-2">
+            <a href="{{ task.get_absolute_url }}">{{ task.name }}</a>
+            <span class="badge badge-priority-{{ task.priority }}">
+              {{ task.get_priority_display }}
+            </span>
+          </li>
+        {% empty %}
+          <li class="list-group-item text-muted">No open tasks</li>
+        {% endfor %}
+      </ul>
+    </div>
+    <div class="col-12 col-md-6">
+      <h2 class="h4">Completed tasks</h2>
+      <ul class="list-group">
+        {% for task in completed_tasks %}
+          <li class="list-group-item">
+            <a href="{{ task.get_absolute_url }}">{{ task.name }}</a>
+          </li>
+        {% empty %}
+          <li class="list-group-item text-muted">No completed tasks</li>
+        {% endfor %}
+      </ul>
+    </div>
+  </div>
+{% endblock %}

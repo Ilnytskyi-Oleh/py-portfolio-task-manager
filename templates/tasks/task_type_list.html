@@ -1,0 +1,31 @@
+{% extends "base.html" %}
+
+{% block title %}<title>Task types — Task Manager</title>{% endblock %}
+
+{% block content %}
+  <div class="page-header">
+    <div>
+      <h1 class="mb-1">Task types</h1>
+      <p class="text-muted mb-0">Categories for planning and reporting.</p>
+    </div>
+    {% if user.is_staff %}
+      <div class="page-actions">
+        <a class="btn btn-primary" href="{% url 'tasks:task-type-create' %}">
+          Create type
+        </a>
+      </div>
+    {% endif %}
+  </div>
+  {% if task_type_list %}
+    <ul class="list-group surface-card overflow-hidden">
+      {% for task_type in task_type_list %}
+        <li class="list-group-item">{{ task_type.name }}</li>
+      {% endfor %}
+    </ul>
+  {% else %}
+    <div class="empty-state">
+      <h2>No task types yet</h2>
+      <p>Staff can add types for the team.</p>
+    </div>
+  {% endif %}
+{% endblock %}

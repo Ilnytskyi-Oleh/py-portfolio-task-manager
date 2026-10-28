@@ -1,0 +1,43 @@
+{% extends "base.html" %}
+{% load task_perms %}
+
+{% block title %}<title>Login — Task Manager</title>{% endblock %}
+
+{% block content %}
+  <div class="row justify-content-center py-md-4">
+    <div class="col-12 col-sm-10 col-md-6 col-lg-5">
+      <p class="login-brand">Task Manager</p>
+      <p class="text-muted mb-4">Sign in to coordinate work across teams.</p>
+      <h1 class="h4 mb-3">Login</h1>
+      {% if form.errors %}
+        <div class="alert alert-danger">
+          Invalid username or password.
+        </div>
+      {% endif %}
+      <form method="post" class="login-panel">
+        {% csrf_token %}
+        <div class="mb-3">
+          <label class="form-label" for="id_username">Username</label>
+          <input type="text" name="username" id="id_username"
+                 class="form-control form-control-lg" required autofocus
+                 autocomplete="username">
+        </div>
+        <div class="mb-3">
+          <label class="form-label" for="id_password">Password</label>
+          <input type="password" name="password" id="id_password"
+                 class="form-control form-control-lg" required
+                 autocomplete="current-password">
+        </div>
+        <button type="submit" class="btn btn-primary btn-lg w-100">
+          Sign in
+        </button>
+      </form>
+      {% demo_mode as show_demo %}
+      {% if show_demo %}
+        <p class="text-muted small mt-3">
+          Demo: <code>admin.user</code> / <code>1qazcde3</code>
+        </p>
+      {% endif %}
+    </div>
+  </div>
+{% endblock %}

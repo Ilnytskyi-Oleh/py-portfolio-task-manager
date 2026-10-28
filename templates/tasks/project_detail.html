@@ -1,0 +1,33 @@
+{% extends "base.html" %}
+{% load task_perms %}
+
+{% block title %}<title>{{ project.name }} — Task Manager</title>{% endblock %}
+
+{% block content %}
+  <div class="page-header align-items-start">
+    <div class="me-auto">
+      <h1 class="mb-1">{{ project.name }}</h1>
+      <p class="text-muted mb-0">
+        Team:
+        <a href="{{ project.team.get_absolute_url }}">
+          {{ project.team.name }}
+        </a>
+      </p>
+    </div>
+    {% if request.user|can_manage_project:project %}
+      <div class="page-actions">
+        <a class="btn btn-outline-primary"
+           href="{% url 'tasks:project-update' pk=project.pk %}">Edit</a>
+      </div>
+    {% endif %}
+  </div>
+
+  {% if project.description %}
+    <p class="text-muted">{{ project.description|linebreaksbr }}</p>
+  {% endif %}
+
+  <h2 class="h4 mt-4 mb-3">Tasks</h2>
+  {% with task_list=project.tasks.all current_sort=None current_dir=None %}
+    {% include "tasks/includes/task_table.html" %}
+  {% endwith %}
+{% endblock %}

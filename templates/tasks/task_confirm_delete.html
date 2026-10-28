@@ -1,0 +1,15 @@
+{% extends "base.html" %}
+
+{% block title %}<title>Delete task — Task Manager</title>{% endblock %}
+
+{% block content %}
+  <h1 class="mb-3">Delete task</h1>
+  <p>Are you sure you want to delete <strong>{{ object.name }}</strong>?</p>
+  <form method="post">
+    {% csrf_token %}
+    <button type="submit" class="btn btn-danger">Confirm</button>
+    <a href="{{ object.get_absolute_url }}" class="btn btn-outline-secondary">
+      Cancel
+    </a>
+  </form>
+{% endblock %}

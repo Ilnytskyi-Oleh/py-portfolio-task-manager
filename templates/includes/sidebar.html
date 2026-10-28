@@ -1,0 +1,87 @@
+{% with url_name=request.resolver_match.url_name %}
+<div class="px-1">
+  <h4 class="brand mb-3">
+    <a href="{% url 'tasks:index' %}" class="text-decoration-none">
+      Task Manager
+    </a>
+  </h4>
+
+  {% if user.is_authenticated %}
+    <p class="small text-muted mb-1">Signed in as</p>
+    <p class="mb-3">
+      <a href="{% url 'tasks:worker-detail' pk=user.pk %}">
+        {{ user.username }}
+      </a>
+    </p>
+    <ul class="nav flex-column gap-1 mb-3" data-nav>
+      <li class="nav-item">
+        <a class="nav-link{% if url_name == 'index' %} active{% endif %}"
+           href="{% url 'tasks:index' %}">Dashboard</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link{% if url_name == 'task-list' %} active{% endif %}"
+           href="{% url 'tasks:task-list' %}">Tasks</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link{% if url_name == 'my-task-list' %} active{% endif %}"
+           href="{% url 'tasks:my-task-list' %}">My tasks</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link{% if url_name == 'project-list' or url_name == 'project-detail' %} active{% endif %}"
+           href="{% url 'tasks:project-list' %}">Projects</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link{% if url_name == 'team-list' or url_name == 'team-detail' %} active{% endif %}"
+           href="{% url 'tasks:team-list' %}">Teams</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link{% if url_name == 'worker-list' or url_name == 'worker-detail' %} active{% endif %}"
+           href="{% url 'tasks:worker-list' %}">Workers</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link{% if url_name == 'tag-list' %} active{% endif %}"
+           href="{% url 'tasks:tag-list' %}">Tags</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link{% if url_name == 'task-type-list' %} active{% endif %}"
+           href="{% url 'tasks:task-type-list' %}">
+          Task types
+        </a>
+      </li>
+      {% if user.is_staff %}
+        <li class="nav-item mt-2">
+          <a class="nav-link" href="{% url 'admin:index' %}">Admin</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link{% if url_name == 'team-create' %} active{% endif %}"
+             href="{% url 'tasks:team-create' %}">
+            Create team
+          </a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link{% if url_name == 'tag-create' %} active{% endif %}"
+             href="{% url 'tasks:tag-create' %}">
+            Create tag
+          </a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link{% if url_name == 'task-type-create' %} active{% endif %}"
+             href="{% url 'tasks:task-type-create' %}">
+            Create type
+          </a>
+        </li>
+      {% endif %}
+    </ul>
+    <form method="post" action="{% url 'logout' %}">
+      {% csrf_token %}
+      <button type="submit" class="btn btn-logout btn-sm w-100">
+        Logout
+      </button>
+    </form>
+  {% else %}
+    <a class="btn btn-primary btn-sm w-100" href="{% url 'login' %}">
+      Login
+    </a>
+  {% endif %}
+</div>
+{% endwith %}

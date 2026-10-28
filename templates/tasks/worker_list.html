@@ -1,0 +1,52 @@
+{% extends "base.html" %}
+
+{% block title %}<title>Workers — Task Manager</title>{% endblock %}
+
+{% block content %}
+  <div class="page-header">
+    <div>
+      <h1 class="mb-1">Workers</h1>
+      <p class="text-muted mb-0">People across positions and teams.</p>
+    </div>
+  </div>
+  <form method="get" class="row g-2 mb-3 filter-panel filter-bar">
+    <div class="col-12 col-sm-8 col-md-4">{{ search_form.username }}</div>
+    <div class="col-12 col-sm-4 col-md-2">
+      <button class="btn btn-outline-secondary w-100" type="submit">
+        Search
+      </button>
+    </div>
+  </form>
+  <div class="table-shell table-responsive">
+    <table class="table tm-table">
+      <thead>
+      <tr>
+        <th>Username</th>
+        <th class="d-none d-sm-table-cell">Name</th>
+        <th>Position</th>
+        <th>Open</th>
+        <th>Done</th>
+      </tr>
+      </thead>
+      <tbody>
+      {% for worker in worker_list %}
+        <tr data-href="{{ worker.get_absolute_url }}">
+          <td>
+            <a class="task-name" href="{{ worker.get_absolute_url }}">
+              {{ worker.username }}
+            </a>
+          </td>
+          <td class="d-none d-sm-table-cell">
+            {{ worker.get_full_name|default:"—" }}
+          </td>
+          <td>{{ worker.position|default:"—" }}</td>
+          <td>{{ worker.open_tasks }}</td>
+          <td>{{ worker.done_tasks }}</td>
+        </tr>
+      {% empty %}
+        <tr><td colspan="5">No workers found.</td></tr>
+      {% endfor %}
+      </tbody>
+    </table>
+  </div>
+{% endblock %}

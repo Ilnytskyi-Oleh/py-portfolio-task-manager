@@ -1,0 +1,53 @@
+{% extends "base.html" %}
+{% load query_extras %}
+
+{% block title %}<title>Tasks — Task Manager</title>{% endblock %}
+
+{% block content %}
+  <div class="page-header">
+    <div>
+      <h1 class="mb-1">Tasks</h1>
+      <p class="text-muted mb-0">Browse, filter and prioritize team work.</p>
+    </div>
+    <div class="page-actions">
+      <a class="btn btn-primary" href="{% url 'tasks:task-create' %}">
+        Create task
+      </a>
+    </div>
+  </div>
+
+  <div class="filter-panel">
+    <div class="filter-chips" role="tablist" aria-label="Status filters">
+      <a class="filter-chip{% if not status_filter %} active{% endif %}"
+         href="{% url_replace status='' page=None %}">All</a>
+      <a class="filter-chip{% if status_filter == 'open' %} active{% endif %}"
+         href="{% url_replace status='open' page=None %}">Open</a>
+      <a class="filter-chip{% if status_filter == 'done' %} active{% endif %}"
+         href="{% url_replace status='done' page=None %}">Done</a>
+    </div>
+
+    <form method="get" class="row g-2 filter-bar">
+      {% if current_sort %}
+        <input type="hidden" name="sort" value="{{ current_sort }}">
+      {% endif %}
+      {% if current_dir %}
+        <input type="hidden" name="dir" value="{{ current_dir }}">
+      {% endif %}
+      <div class="col-12 col-sm-6 col-lg-3">{{ search_form.name }}</div>
+      <div class="col-6 col-sm-3 col-lg-2">{{ search_form.priority }}</div>
+      <div class="col-6 col-sm-3 col-lg-2">{{ search_form.project }}</div>
+      <div class="col-6 col-sm-4 col-lg-2">{{ search_form.tag }}</div>
+      <div class="col-6 col-sm-4 col-lg-2">{{ search_form.team }}</div>
+      <div class="col-12 col-sm-4 col-lg-1">
+        <button class="btn btn-outline-secondary w-100" type="submit">
+          Filter
+        </button>
+      </div>
+      {% if status_filter %}
+        <input type="hidden" name="status" value="{{ status_filter }}">
+      {% endif %}
+    </form>
+  </div>
+
+  {% include "tasks/includes/task_table.html" %}
+{% endblock %}
