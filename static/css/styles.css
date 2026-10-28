@@ -185,6 +185,8 @@ a:hover {
 .sidebar-desktop {
   width: var(--tm-sidebar-width);
   flex: 0 0 var(--tm-sidebar-width);
+  /* Let the width animation run; nowrap labels must not force min-content width. */
+  min-width: 0;
   position: sticky;
   top: 0;
   height: 100vh;
@@ -406,6 +408,21 @@ html.sidebar-collapsed .sidebar-toggle-icon {
   height: 1.15rem;
   flex-shrink: 0;
   opacity: 0.9;
+}
+
+/* Keep labels on one line while the rail width animates, so rows don't jump. */
+.sidebar-label,
+.sidebar .brand-name,
+.sidebar-submenu-link {
+  white-space: nowrap;
+}
+
+.sidebar-user a {
+  display: block;
+  max-width: 100%;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
 }
 
 .sidebar .nav-link:hover,
