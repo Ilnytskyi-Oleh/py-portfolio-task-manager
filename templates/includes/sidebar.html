@@ -237,7 +237,29 @@
     </div>
 
     <div class="sidebar-footer">
-      <form method="post" action="{% url 'logout' %}">
+      <div class="sidebar-settings" data-settings-menu>
+        <button
+          type="button"
+          class="btn btn-settings btn-sm w-100"
+          data-settings-toggle
+          aria-expanded="false"
+          aria-haspopup="true"
+          title="{% trans 'Settings' %}"
+        >
+          <svg class="nav-icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+            <path d="M12 15.2a3.2 3.2 0 1 0 0-6.4 3.2 3.2 0 0 0 0 6.4z"
+                  fill="none" stroke="currentColor" stroke-width="1.75"/>
+            <path d="M19.4 12.9v-1.8l1.6-1.3-1.5-2.6-2 .6a6.6 6.6 0 0 0-1.5-.9l-.3-2.1h-3l-.3 2.1a6.6 6.6 0 0 0-1.5.9l-2-.6-1.5 2.6 1.6 1.3v1.8l-1.6 1.3 1.5 2.6 2-.6a6.6 6.6 0 0 0 1.5.9l.3 2.1h3l.3-2.1a6.6 6.6 0 0 0 1.5-.9l2 .6 1.5-2.6-1.6-1.3z"
+                  fill="none" stroke="currentColor" stroke-width="1.75"
+                  stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+          <span class="sidebar-label">{% trans "Settings" %}</span>
+        </button>
+        <div class="sidebar-settings-panel" hidden>
+          {% include "includes/prefs.html" %}
+        </div>
+      </div>
+      <form method="post" action="{% url 'logout' %}" class="mt-2">
         {% csrf_token %}
         <button type="submit" class="btn btn-logout btn-sm w-100"
                 title="{% trans 'Sign out' %}">
@@ -253,6 +275,28 @@
   {% else %}
     <div class="sidebar-scroll sidebar-scroll-empty sidebar-peek-zone" aria-hidden="true"></div>
     <div class="sidebar-footer">
+      <div class="sidebar-settings mb-2" data-settings-menu>
+        <button
+          type="button"
+          class="btn btn-settings btn-sm w-100"
+          data-settings-toggle
+          aria-expanded="false"
+          aria-haspopup="true"
+          title="{% trans 'Settings' %}"
+        >
+          <svg class="nav-icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+            <path d="M12 15.2a3.2 3.2 0 1 0 0-6.4 3.2 3.2 0 0 0 0 6.4z"
+                  fill="none" stroke="currentColor" stroke-width="1.75"/>
+            <path d="M19.4 12.9v-1.8l1.6-1.3-1.5-2.6-2 .6a6.6 6.6 0 0 0-1.5-.9l-.3-2.1h-3l-.3 2.1a6.6 6.6 0 0 0-1.5.9l-2-.6-1.5 2.6 1.6 1.3v1.8l-1.6 1.3 1.5 2.6 2-.6a6.6 6.6 0 0 0 1.5.9l.3 2.1h3l.3-2.1a6.6 6.6 0 0 0 1.5-.9l2 .6 1.5-2.6-1.6-1.3z"
+                  fill="none" stroke="currentColor" stroke-width="1.75"
+                  stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+          <span class="sidebar-label">{% trans "Settings" %}</span>
+        </button>
+        <div class="sidebar-settings-panel" hidden>
+          {% include "includes/prefs.html" %}
+        </div>
+      </div>
       <a class="btn btn-primary btn-sm w-100" href="{% url 'login' %}"
          title="{% trans 'Sign in' %}">
         <span class="sidebar-label">{% trans "Sign in" %}</span>

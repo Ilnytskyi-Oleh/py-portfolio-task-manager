@@ -35,7 +35,7 @@
 <body>
 {% block site_nav %}
 <nav class="navbar navbar-dark mobile-topbar d-md-none sticky-top">
-  <div class="container-fluid gap-2">
+  <div class="container-fluid">
     <button
       class="btn btn-outline-light btn-sm"
       type="button"
@@ -47,19 +47,14 @@
       {% trans "Menu" %}
     </button>
     {% include "includes/brand.html" with compact=1 %}
-    <div class="mobile-topbar-end ms-auto">
-      <div class="mobile-topbar-prefs">
-        {% include "includes/prefs.html" %}
-      </div>
-      {% if user.is_authenticated %}
-        <a class="btn btn-outline-light btn-sm"
-           href="{% url 'tasks:worker-detail' pk=user.pk %}">
-          {{ user.username }}
-        </a>
-      {% else %}
-        <a class="btn btn-primary btn-sm" href="{% url 'login' %}">{% trans "Sign in" %}</a>
-      {% endif %}
-    </div>
+    {% if user.is_authenticated %}
+      <a class="btn btn-outline-light btn-sm"
+         href="{% url 'tasks:worker-detail' pk=user.pk %}">
+        {{ user.username }}
+      </a>
+    {% else %}
+      <a class="btn btn-primary btn-sm" href="{% url 'login' %}">{% trans "Sign in" %}</a>
+    {% endif %}
   </div>
 </nav>
 
@@ -95,9 +90,6 @@
   </aside>
   {% endblock %}
   <main class="main-content py-3 py-md-4 px-3 px-md-4">
-    <header class="app-toolbar d-none d-md-flex">
-      {% include "includes/prefs.html" %}
-    </header>
     {% if messages %}
       {% for message in messages %}
         <div class="alert alert-{{ message.tags }} alert-dismissible fade show"

@@ -60,6 +60,84 @@
   });
   syncThemeButtons();
 
+  const settingsMenus = document.querySelectorAll("[data-settings-menu]");
+  const settingsHoverMedia = window.matchMedia(
+    "(hover: hover) and (pointer: fine)"
+  );
+
+  function setSettingsOpen(menu, open) {
+    const toggle = menu.querySelector("[data-settings-toggle]");
+    const panel = menu.querySelector(".sidebar-settings-panel");
+    if (!toggle || !panel) {
+      return;
+    }
+    menu.classList.toggle("is-open", open);
+    toggle.setAttribute("aria-expanded", open ? "true" : "false");
+    panel.hidden = !open;
+  }
+
+  function closeAllSettings(except) {
+    settingsMenus.forEach((menu) => {
+      if (menu !== except) {
+        setSettingsOpen(menu, false);
+      }
+    });
+  }
+
+  settingsMenus.forEach((menu) => {
+    const toggle = menu.querySelector("[data-settings-toggle]");
+    if (!toggle) {
+      return;
+    }
+    let hoverCloseTimer = null;
+
+    function clearHoverClose() {
+      if (hoverCloseTimer) {
+        window.clearTimeout(hoverCloseTimer);
+        hoverCloseTimer = null;
+      }
+    }
+
+    toggle.addEventListener("click", (event) => {
+      event.stopPropagation();
+      const next = !menu.classList.contains("is-open");
+      closeAllSettings(menu);
+      setSettingsOpen(menu, next);
+    });
+
+    menu.addEventListener("mouseenter", () => {
+      if (!settingsHoverMedia.matches) {
+        return;
+      }
+      clearHoverClose();
+      closeAllSettings(menu);
+      setSettingsOpen(menu, true);
+    });
+
+    menu.addEventListener("mouseleave", () => {
+      if (!settingsHoverMedia.matches) {
+        return;
+      }
+      clearHoverClose();
+      hoverCloseTimer = window.setTimeout(() => {
+        setSettingsOpen(menu, false);
+      }, 150);
+    });
+  });
+
+  document.addEventListener("click", (event) => {
+    const target = event.target;
+    if (!(target instanceof Element) || !target.closest("[data-settings-menu]")) {
+      closeAllSettings();
+    }
+  });
+
+  document.addEventListener("keydown", (event) => {
+    if (event.key === "Escape") {
+      closeAllSettings();
+    }
+  });
+
   const peekMedia = window.matchMedia("(hover: hover) and (pointer: fine)");
 
   function isSidebarCollapsed() {
@@ -84,6 +162,7 @@
       [
         ".sidebar-desktop .nav-link",
         ".sidebar-desktop .btn-logout",
+        ".sidebar-desktop .btn-settings",
         ".sidebar-desktop .sidebar-toggle",
         ".sidebar-desktop .sidebar-footer .btn",
       ].join(", ")
