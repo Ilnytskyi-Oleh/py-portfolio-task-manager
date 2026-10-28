@@ -477,36 +477,31 @@ html.sidebar-collapsed .sidebar-toggle-icon {
   font: inherit;
 }
 
+/* Expanded sidebar: open inline under the trigger (avoids overflow clipping). */
 .sidebar-submenu-panel {
-  position: absolute;
-  top: 0;
-  left: calc(100% - 2px);
+  position: static;
   z-index: 30;
-  min-width: 11rem;
-  padding: 0.45rem;
+  width: 100%;
+  min-width: 0;
+  margin-top: 0.25rem;
+  padding: 0.35rem;
   border: 1px solid rgba(255, 255, 255, 0.12);
   border-radius: var(--tm-radius-sm);
-  background: var(--tm-ink-soft);
-  box-shadow: 0 12px 28px rgba(0, 0, 0, 0.35);
-}
-
-.sidebar-submenu:not(.sidebar-submenu-footer).is-open::before {
-  content: "";
-  position: absolute;
-  z-index: 29;
-  left: 0;
-  right: -12rem;
-  top: -0.35rem;
-  bottom: -0.35rem;
+  background: rgba(255, 255, 255, 0.04);
+  box-shadow: none;
 }
 
 .sidebar-submenu-footer .sidebar-submenu-panel {
+  position: absolute;
   top: auto;
   left: 0;
   right: 0;
   bottom: calc(100% + 0.45rem);
-  min-width: 0;
+  width: auto;
+  margin-top: 0;
   padding: 0.85rem 0.8rem;
+  background: var(--tm-ink-soft);
+  box-shadow: 0 12px 28px rgba(0, 0, 0, 0.35);
 }
 
 .sidebar-submenu-panel[hidden] {
@@ -694,14 +689,18 @@ html.sidebar-collapsed:not(.sidebar-peek) .sidebar-desktop .btn-settings {
   padding-right: 0.35rem;
 }
 
+/* Collapsed rail: Create/Settings panels fly out to the right. */
 html.sidebar-collapsed:not(.sidebar-peek) .sidebar-desktop .sidebar-submenu-panel {
-  /* Overlap the rail so the cursor never crosses empty space. */
+  position: absolute;
   left: calc(100% - 2px);
   right: auto;
   top: 0;
   bottom: auto;
   width: 12.5rem;
   min-width: 12.5rem;
+  margin-top: 0;
+  background: var(--tm-ink-soft);
+  box-shadow: 0 12px 28px rgba(0, 0, 0, 0.35);
 }
 
 html.sidebar-collapsed:not(.sidebar-peek) .sidebar-desktop .sidebar-submenu-footer .sidebar-submenu-panel {
@@ -733,8 +732,14 @@ html.sidebar-collapsed .sidebar-desktop:has(.sidebar-submenu.is-open) .sidebar-i
   overflow: visible;
 }
 
-.sidebar-scroll:has(.sidebar-submenu.is-open) {
-  overflow: visible;
+/* Peek / expanded collapsed-hover: keep Create inline so it stays readable. */
+html.sidebar-collapsed.sidebar-peek .sidebar-desktop .sidebar-submenu:not(.sidebar-submenu-footer) .sidebar-submenu-panel {
+  position: static;
+  width: 100%;
+  min-width: 0;
+  margin-top: 0.25rem;
+  background: rgba(255, 255, 255, 0.04);
+  box-shadow: none;
 }
 
 html.sidebar-collapsed.sidebar-peek .sidebar-desktop .sidebar-top {
