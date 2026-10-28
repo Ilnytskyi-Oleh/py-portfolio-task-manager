@@ -60,14 +60,14 @@
   });
   syncThemeButtons();
 
-  const settingsMenus = document.querySelectorAll("[data-settings-menu]");
-  const settingsHoverMedia = window.matchMedia(
+  const submenus = document.querySelectorAll("[data-submenu]");
+  const submenuHoverMedia = window.matchMedia(
     "(hover: hover) and (pointer: fine)"
   );
 
-  function setSettingsOpen(menu, open) {
-    const toggle = menu.querySelector("[data-settings-toggle]");
-    const panel = menu.querySelector(".sidebar-settings-panel");
+  function setSubmenuOpen(menu, open) {
+    const toggle = menu.querySelector("[data-submenu-toggle]");
+    const panel = menu.querySelector(".sidebar-submenu-panel");
     if (!toggle || !panel) {
       return;
     }
@@ -76,16 +76,16 @@
     panel.hidden = !open;
   }
 
-  function closeAllSettings(except) {
-    settingsMenus.forEach((menu) => {
+  function closeAllSubmenus(except) {
+    submenus.forEach((menu) => {
       if (menu !== except) {
-        setSettingsOpen(menu, false);
+        setSubmenuOpen(menu, false);
       }
     });
   }
 
-  settingsMenus.forEach((menu) => {
-    const toggle = menu.querySelector("[data-settings-toggle]");
+  submenus.forEach((menu) => {
+    const toggle = menu.querySelector("[data-submenu-toggle]");
     if (!toggle) {
       return;
     }
@@ -101,42 +101,42 @@
     toggle.addEventListener("click", (event) => {
       event.stopPropagation();
       const next = !menu.classList.contains("is-open");
-      closeAllSettings(menu);
-      setSettingsOpen(menu, next);
+      closeAllSubmenus(menu);
+      setSubmenuOpen(menu, next);
     });
 
     menu.addEventListener("mouseenter", () => {
-      if (!settingsHoverMedia.matches) {
+      if (!submenuHoverMedia.matches) {
         return;
       }
       clearHoverClose();
-      closeAllSettings(menu);
-      setSettingsOpen(menu, true);
+      closeAllSubmenus(menu);
+      setSubmenuOpen(menu, true);
     });
 
     menu.addEventListener("mouseleave", () => {
-      if (!settingsHoverMedia.matches) {
+      if (!submenuHoverMedia.matches) {
         return;
       }
       clearHoverClose();
       // Longer grace when the panel flies beside a collapsed rail.
       const delay = isSidebarCollapsed() ? 320 : 160;
       hoverCloseTimer = window.setTimeout(() => {
-        setSettingsOpen(menu, false);
+        setSubmenuOpen(menu, false);
       }, delay);
     });
   });
 
   document.addEventListener("click", (event) => {
     const target = event.target;
-    if (!(target instanceof Element) || !target.closest("[data-settings-menu]")) {
-      closeAllSettings();
+    if (!(target instanceof Element) || !target.closest("[data-submenu]")) {
+      closeAllSubmenus();
     }
   });
 
   document.addEventListener("keydown", (event) => {
     if (event.key === "Escape") {
-      closeAllSettings();
+      closeAllSubmenus();
     }
   });
 

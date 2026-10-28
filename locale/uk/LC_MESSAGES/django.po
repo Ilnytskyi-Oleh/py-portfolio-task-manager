@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2026-10-28 16:26+0000\n"
+"POT-Creation-Date: 2026-10-28 16:32+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language: uk\n"
@@ -102,6 +102,9 @@ msgstr "Типи задач"
 
 msgid "Admin"
 msgstr "Адмін"
+
+msgid "Create"
+msgstr "Створити"
 
 msgid "Create team"
 msgstr "Створити команду"

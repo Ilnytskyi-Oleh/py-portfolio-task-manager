@@ -195,40 +195,45 @@
               </a>
             </li>
             <li class="nav-item">
-              <a class="nav-link{% if url_name == 'team-create' %} active{% endif %}"
-                 href="{% url 'tasks:team-create' %}"
-                 title="{% trans 'Create team' %}">
-                <svg class="nav-icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false">
-                  <path d="M12 5v14M5 12h14"
-                        fill="none" stroke="currentColor" stroke-width="1.75"
-                        stroke-linecap="round"/>
-                </svg>
-                <span class="sidebar-label">{% trans "Create team" %}</span>
-              </a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link{% if url_name == 'tag-create' %} active{% endif %}"
-                 href="{% url 'tasks:tag-create' %}"
-                 title="{% trans 'Create tag' %}">
-                <svg class="nav-icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false">
-                  <path d="M12 5v14M5 12h14"
-                        fill="none" stroke="currentColor" stroke-width="1.75"
-                        stroke-linecap="round"/>
-                </svg>
-                <span class="sidebar-label">{% trans "Create tag" %}</span>
-              </a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link{% if url_name == 'task-type-create' %} active{% endif %}"
-                 href="{% url 'tasks:task-type-create' %}"
-                 title="{% trans 'Create type' %}">
-                <svg class="nav-icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false">
-                  <path d="M12 5v14M5 12h14"
-                        fill="none" stroke="currentColor" stroke-width="1.75"
-                        stroke-linecap="round"/>
-                </svg>
-                <span class="sidebar-label">{% trans "Create type" %}</span>
-              </a>
+              <div class="sidebar-submenu" data-submenu>
+                <button
+                  type="button"
+                  class="nav-link sidebar-submenu-toggle{% if url_name == 'team-create' or url_name == 'tag-create' or url_name == 'task-type-create' %} active{% endif %}"
+                  data-submenu-toggle
+                  aria-expanded="false"
+                  aria-haspopup="true"
+                  title="{% trans 'Create' %}"
+                >
+                  <svg class="nav-icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+                    <path d="M12 5v14M5 12h14"
+                          fill="none" stroke="currentColor" stroke-width="1.75"
+                          stroke-linecap="round"/>
+                  </svg>
+                  <span class="sidebar-label">{% trans "Create" %}</span>
+                </button>
+                <div class="sidebar-submenu-panel" hidden>
+                  <ul class="sidebar-submenu-list">
+                    <li>
+                      <a class="sidebar-submenu-link{% if url_name == 'team-create' %} is-active{% endif %}"
+                         href="{% url 'tasks:team-create' %}">
+                        {% trans "Create team" %}
+                      </a>
+                    </li>
+                    <li>
+                      <a class="sidebar-submenu-link{% if url_name == 'tag-create' %} is-active{% endif %}"
+                         href="{% url 'tasks:tag-create' %}">
+                        {% trans "Create tag" %}
+                      </a>
+                    </li>
+                    <li>
+                      <a class="sidebar-submenu-link{% if url_name == 'task-type-create' %} is-active{% endif %}"
+                         href="{% url 'tasks:task-type-create' %}">
+                        {% trans "Create type" %}
+                      </a>
+                    </li>
+                  </ul>
+                </div>
+              </div>
             </li>
           </ul>
         </div>
@@ -237,11 +242,11 @@
     </div>
 
     <div class="sidebar-footer">
-      <div class="sidebar-settings" data-settings-menu>
+      <div class="sidebar-submenu sidebar-submenu-footer" data-submenu>
         <button
           type="button"
           class="btn btn-settings btn-sm w-100"
-          data-settings-toggle
+          data-submenu-toggle
           aria-expanded="false"
           aria-haspopup="true"
           title="{% trans 'Settings' %}"
@@ -255,7 +260,7 @@
           </svg>
           <span class="sidebar-label">{% trans "Settings" %}</span>
         </button>
-        <div class="sidebar-settings-panel" hidden>
+        <div class="sidebar-submenu-panel" hidden>
           {% include "includes/prefs.html" %}
         </div>
       </div>
@@ -275,11 +280,11 @@
   {% else %}
     <div class="sidebar-scroll sidebar-scroll-empty sidebar-peek-zone" aria-hidden="true"></div>
     <div class="sidebar-footer">
-      <div class="sidebar-settings mb-2" data-settings-menu>
+      <div class="sidebar-submenu sidebar-submenu-footer mb-2" data-submenu>
         <button
           type="button"
           class="btn btn-settings btn-sm w-100"
-          data-settings-toggle
+          data-submenu-toggle
           aria-expanded="false"
           aria-haspopup="true"
           title="{% trans 'Settings' %}"
@@ -293,7 +298,7 @@
           </svg>
           <span class="sidebar-label">{% trans "Settings" %}</span>
         </button>
-        <div class="sidebar-settings-panel" hidden>
+        <div class="sidebar-submenu-panel" hidden>
           {% include "includes/prefs.html" %}
         </div>
       </div>
