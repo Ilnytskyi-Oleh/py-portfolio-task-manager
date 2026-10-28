@@ -641,10 +641,31 @@ html.sidebar-collapsed:not(.sidebar-peek) .sidebar-desktop .btn-settings {
 }
 
 html.sidebar-collapsed:not(.sidebar-peek) .sidebar-desktop .sidebar-settings-panel {
-  left: calc(100% + 0.45rem);
+  /* Overlap the rail so the cursor never crosses empty space. */
+  left: calc(100% - 2px);
   right: auto;
   bottom: 0;
   width: 12.5rem;
+}
+
+/* Invisible hover bridge: button → panel, with vertical slack. */
+html.sidebar-collapsed:not(.sidebar-peek) .sidebar-desktop .sidebar-settings.is-open::before {
+  content: "";
+  position: absolute;
+  z-index: 29;
+  left: 0;
+  right: -13rem;
+  top: -0.75rem;
+  bottom: -0.75rem;
+}
+
+html.sidebar-collapsed:not(.sidebar-peek) .sidebar-desktop .sidebar-settings-panel::before {
+  content: "";
+  position: absolute;
+  top: -0.75rem;
+  bottom: -0.75rem;
+  right: 100%;
+  width: 1rem;
 }
 
 html.sidebar-collapsed .sidebar-desktop:has(.sidebar-settings.is-open) .sidebar-inner {

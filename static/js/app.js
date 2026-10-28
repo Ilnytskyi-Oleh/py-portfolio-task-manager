@@ -119,9 +119,11 @@
         return;
       }
       clearHoverClose();
+      // Longer grace when the panel flies beside a collapsed rail.
+      const delay = isSidebarCollapsed() ? 320 : 160;
       hoverCloseTimer = window.setTimeout(() => {
         setSettingsOpen(menu, false);
-      }, 150);
+      }, delay);
     });
   });
 
