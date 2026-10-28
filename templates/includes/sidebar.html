@@ -184,10 +184,12 @@
               <a class="nav-link" href="{% url 'admin:index' %}"
                  title="{% trans 'Admin' %}">
                 <svg class="nav-icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false">
-                  <circle cx="12" cy="12" r="3" fill="none" stroke="currentColor" stroke-width="1.75"/>
-                  <path d="M12 3.5v2.2M12 18.3v2.2M3.5 12h2.2M18.3 12h2.2M6.1 6.1l1.6 1.6M16.3 16.3l1.6 1.6M17.9 6.1l-1.6 1.6M7.7 16.3l-1.6 1.6"
+                  <path d="M12 3.5 19 6.5v5.2c0 4.2-2.9 7.4-7 8.8-4.1-1.4-7-4.6-7-8.8V6.5L12 3.5Z"
                         fill="none" stroke="currentColor" stroke-width="1.75"
-                        stroke-linecap="round"/>
+                        stroke-linejoin="round"/>
+                  <path d="M9.2 12.1 11.1 14l3.7-4.2"
+                        fill="none" stroke="currentColor" stroke-width="1.75"
+                        stroke-linecap="round" stroke-linejoin="round"/>
                 </svg>
                 <span class="sidebar-label">{% trans "Admin" %}</span>
               </a>
@@ -231,13 +233,11 @@
           </ul>
         </div>
       {% endif %}
+      <div class="sidebar-peek-zone" aria-hidden="true"></div>
     </div>
 
     <div class="sidebar-footer">
-      <div class="sidebar-prefs">
-        {% include "includes/prefs.html" %}
-      </div>
-      <form method="post" action="{% url 'logout' %}" class="mt-3">
+      <form method="post" action="{% url 'logout' %}">
         {% csrf_token %}
         <button type="submit" class="btn btn-logout btn-sm w-100"
                 title="{% trans 'Sign out' %}">
@@ -251,11 +251,8 @@
       </form>
     </div>
   {% else %}
-    <div class="sidebar-scroll sidebar-scroll-empty"></div>
+    <div class="sidebar-scroll sidebar-scroll-empty sidebar-peek-zone" aria-hidden="true"></div>
     <div class="sidebar-footer">
-      <div class="sidebar-prefs mb-3">
-        {% include "includes/prefs.html" %}
-      </div>
       <a class="btn btn-primary btn-sm w-100" href="{% url 'login' %}"
          title="{% trans 'Sign in' %}">
         <span class="sidebar-label">{% trans "Sign in" %}</span>

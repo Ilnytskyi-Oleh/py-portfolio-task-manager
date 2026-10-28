@@ -39,8 +39,21 @@
       <div class="col-6 col-sm-4 col-lg-2">{{ search_form.tag }}</div>
       <div class="col-6 col-sm-4 col-lg-2">{{ search_form.team }}</div>
       <div class="col-12 col-sm-4 col-lg-1">
-        <button class="btn btn-outline-secondary w-100" type="submit">
-          {% trans "Filter" %}
+        <button
+          class="btn btn-outline-secondary w-100 btn-filter-icon"
+          type="submit"
+          title="{% trans 'Filter' %}"
+          aria-label="{% trans 'Filter' %}"
+        >
+          <svg class="btn-filter-svg" viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+            <path
+              d="M4 6h16M7 12h10M10 18h4"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="1.75"
+              stroke-linecap="round"
+            />
+          </svg>
         </button>
       </div>
       {% if status_filter %}

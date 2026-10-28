@@ -194,6 +194,7 @@ a:hover {
 }
 
 .main-content {
+  position: relative;
   flex: 1 1 auto;
   min-width: 0;
   animation: tm-fade-in 180ms ease-out;
@@ -209,6 +210,46 @@ a:hover {
 .mobile-topbar .navbar-brand,
 .mobile-topbar .brand-wordmark {
   color: #fff;
+}
+
+.mobile-topbar-end {
+  display: flex;
+  align-items: center;
+  gap: 0.45rem;
+  min-width: 0;
+}
+
+.mobile-topbar-prefs .prefs-segment {
+  border-color: rgba(255, 255, 255, 0.18);
+  background: rgba(255, 255, 255, 0.04);
+}
+
+.mobile-topbar-prefs .prefs-seg {
+  color: rgba(232, 238, 248, 0.72);
+  padding: 0.22rem 0.4rem;
+}
+
+.mobile-topbar-prefs .prefs-seg.is-active,
+.mobile-topbar-prefs .prefs-seg[aria-pressed="true"] {
+  background: rgba(83, 104, 255, 0.32);
+  color: #fff;
+}
+
+.mobile-topbar-prefs .prefs-seg:hover {
+  color: #fff;
+}
+
+.mobile-topbar-prefs .prefs-theme-toggle {
+  width: 1.7rem;
+  height: 1.7rem;
+  border-color: rgba(255, 255, 255, 0.18);
+  background: rgba(255, 255, 255, 0.04);
+  color: rgba(232, 238, 248, 0.82);
+}
+
+.mobile-topbar-prefs .prefs-theme-toggle:hover {
+  color: #fff;
+  border-color: rgba(255, 255, 255, 0.4);
 }
 
 .sidebar {
@@ -231,7 +272,7 @@ a:hover {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  gap: 0.5rem;
+  gap: 1.15rem;
   margin-bottom: 1rem;
   flex-shrink: 0;
 }
@@ -242,6 +283,8 @@ a:hover {
 }
 
 .sidebar-scroll {
+  display: flex;
+  flex-direction: column;
   flex: 1 1 auto;
   min-height: 0;
   overflow-x: hidden;
@@ -252,6 +295,11 @@ a:hover {
 
 .sidebar-scroll-empty {
   flex: 1 1 auto;
+}
+
+.sidebar-peek-zone {
+  flex: 1 1 auto;
+  min-height: 0;
 }
 
 .sidebar-footer {
@@ -445,11 +493,6 @@ html.sidebar-collapsed .sidebar-toggle-icon {
   color: #fff;
 }
 
-.sidebar-prefs {
-  margin-top: 0;
-  padding-top: 0;
-}
-
 .sidebar .btn-logout {
   display: inline-flex;
   align-items: center;
@@ -457,93 +500,176 @@ html.sidebar-collapsed .sidebar-toggle-icon {
   gap: 0.55rem;
 }
 
+/* Float in the top-right padding corner — no layout strip. */
+.app-toolbar {
+  position: absolute;
+  top: 0.7rem;
+  right: 1rem;
+  z-index: 20;
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  margin: 0;
+  padding: 0;
+  border: 0;
+  background: transparent;
+  pointer-events: none;
+}
+
+.app-toolbar .prefs-panel {
+  pointer-events: auto;
+}
+
 .prefs-panel {
   display: flex;
-  flex-direction: column;
-  gap: 0.75rem;
+  flex-direction: row;
+  align-items: center;
+  gap: 0.4rem;
 }
 
-.prefs-group {
-  display: flex;
-  flex-direction: column;
-  gap: 0.35rem;
-}
-
-.prefs-label {
-  font-size: 0.68rem;
-  font-weight: 700;
-  letter-spacing: 0.08em;
-  text-transform: uppercase;
-  color: rgba(232, 238, 248, 0.4);
+.lang-switch {
+  width: auto;
+  margin: 0;
 }
 
 .prefs-segment {
   display: inline-flex;
-  border: 1px solid rgba(255, 255, 255, 0.16);
+  width: auto;
+  border: 1px solid var(--tm-border);
   border-radius: 999px;
   overflow: hidden;
-  background: rgba(255, 255, 255, 0.03);
+  background: var(--tm-surface);
 }
 
 .prefs-seg {
+  flex: 0 0 auto;
   border: 0;
   background: transparent;
-  color: rgba(232, 238, 248, 0.72);
-  font-size: 0.72rem;
+  color: var(--tm-muted);
+  font-size: 0.68rem;
   font-weight: 650;
   letter-spacing: 0.04em;
-  padding: 0.35rem 0.55rem;
+  padding: 0.28rem 0.48rem;
   cursor: pointer;
   line-height: 1.2;
+  text-align: center;
 }
 
 .prefs-seg.is-active,
 .prefs-seg[aria-pressed="true"] {
-  background: rgba(83, 104, 255, 0.28);
-  color: #fff;
+  background: var(--tm-accent-soft);
+  color: var(--tm-accent);
 }
 
 .prefs-seg:hover {
-  color: #fff;
+  color: var(--tm-text);
 }
 
+.prefs-theme-toggle {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 1.85rem;
+  height: 1.85rem;
+  padding: 0;
+  border: 1px solid var(--tm-border);
+  border-radius: var(--tm-radius-sm);
+  background: var(--tm-surface);
+  color: var(--tm-muted);
+  cursor: pointer;
+  transition: color var(--tm-motion), border-color var(--tm-motion), background var(--tm-motion);
+}
+
+.prefs-theme-toggle:hover {
+  color: var(--tm-text);
+  border-color: var(--tm-accent);
+}
+
+.prefs-theme-toggle:focus-visible {
+  outline: none;
+  box-shadow: var(--tm-focus-ring);
+}
+
+.prefs-theme-icon {
+  width: 0.95rem;
+  height: 0.95rem;
+  display: none;
+}
+
+.prefs-theme-toggle:not(.is-dark) .prefs-theme-icon-moon,
+.prefs-theme-toggle.is-dark .prefs-theme-icon-sun {
+  display: block;
+}
+
+/* Collapsed rail: keep a narrow layout slot; panel flies out via .sidebar-inner. */
 html.sidebar-collapsed .sidebar-desktop {
+  flex: 0 0 var(--tm-sidebar-collapsed-width);
   width: var(--tm-sidebar-collapsed-width);
-  flex-basis: var(--tm-sidebar-collapsed-width);
-  padding-left: 0.55rem;
-  padding-right: 0.55rem;
+  padding: 0;
+  border-right: 0;
+  background: transparent;
+  overflow: visible;
+  z-index: 1040;
 }
 
-html.sidebar-collapsed .sidebar-desktop .sidebar-label,
-html.sidebar-collapsed .sidebar-desktop .prefs-label,
-html.sidebar-collapsed .sidebar-desktop .brand-name,
-html.sidebar-collapsed .sidebar-desktop .nav-section-toggle,
-html.sidebar-collapsed .sidebar-desktop .sidebar-user,
-html.sidebar-collapsed .sidebar-desktop .sidebar-prefs {
+html.sidebar-collapsed .sidebar-desktop .sidebar-inner {
+  position: absolute;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  width: var(--tm-sidebar-collapsed-width);
+  height: 100%;
+  background: var(--tm-ink);
+  border-right: 1px solid rgba(255, 255, 255, 0.04);
+  padding: 1.25rem 0.55rem;
+  overflow: hidden;
+  transition:
+    width var(--tm-motion),
+    padding var(--tm-motion),
+    box-shadow var(--tm-motion);
+}
+
+html.sidebar-collapsed.sidebar-peek .sidebar-desktop .sidebar-inner {
+  width: var(--tm-sidebar-width);
+  padding: 1.25rem 1rem;
+  box-shadow: 14px 0 32px rgba(0, 0, 0, 0.32);
+}
+
+html.sidebar-collapsed:not(.sidebar-peek) .sidebar-desktop .sidebar-label,
+html.sidebar-collapsed:not(.sidebar-peek) .sidebar-desktop .brand-name,
+html.sidebar-collapsed:not(.sidebar-peek) .sidebar-desktop .nav-section-toggle,
+html.sidebar-collapsed:not(.sidebar-peek) .sidebar-desktop .sidebar-user {
   display: none !important;
 }
 
-html.sidebar-collapsed .sidebar-desktop .sidebar-top {
+html.sidebar-collapsed:not(.sidebar-peek) .sidebar-desktop .sidebar-top {
   flex-direction: column;
   align-items: center;
+  gap: 1rem;
 }
 
-html.sidebar-collapsed .sidebar-desktop .nav-group.is-collapsed [data-nav] {
+html.sidebar-collapsed:not(.sidebar-peek) .sidebar-desktop .nav-group.is-collapsed [data-nav] {
   display: flex !important;
 }
 
-html.sidebar-collapsed .sidebar-desktop .nav-link {
+html.sidebar-collapsed:not(.sidebar-peek) .sidebar-desktop .nav-link {
   justify-content: center;
   padding: 0.6rem 0.35rem;
 }
 
-html.sidebar-collapsed .sidebar-desktop .btn-logout {
+html.sidebar-collapsed:not(.sidebar-peek) .sidebar-desktop .btn-logout {
   padding-left: 0.35rem;
   padding-right: 0.35rem;
 }
 
-html.sidebar-collapsed .sidebar-desktop .btn-logout .nav-icon {
-  display: inline-block;
+html.sidebar-collapsed.sidebar-peek .sidebar-desktop .sidebar-top {
+  flex-direction: row;
+  align-items: center;
+  gap: 1.15rem;
+}
+
+html.sidebar-collapsed.sidebar-peek .sidebar-desktop .nav-link {
+  justify-content: flex-start;
 }
 
 @keyframes tm-fade-in {
@@ -591,6 +717,8 @@ html.sidebar-collapsed .sidebar-desktop .btn-logout .nav-icon {
   justify-content: space-between;
   align-items: center;
   margin-bottom: 1.25rem;
+  /* Room for the floating language/theme cluster on the right. */
+  padding-right: 7.75rem;
 }
 
 .page-actions {
@@ -876,6 +1004,21 @@ html.sidebar-collapsed .sidebar-desktop .btn-logout .nav-icon {
   background: var(--tm-accent-soft);
   border-color: #c9d0ff;
   color: #3346d9;
+}
+
+.btn-filter-icon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-height: calc(1.5em + 0.75rem + 2px);
+  padding-left: 0.5rem;
+  padding-right: 0.5rem;
+}
+
+.btn-filter-svg {
+  width: 1.15rem;
+  height: 1.15rem;
+  display: block;
 }
 
 .form-check {
@@ -1188,6 +1331,10 @@ html.sidebar-collapsed .sidebar-desktop .btn-logout .nav-icon {
     height: 100%;
   }
 
+  .page-header {
+    padding-right: 0;
+  }
+
   .main-content {
     padding-bottom: 2rem;
   }
@@ -1215,6 +1362,11 @@ html.sidebar-collapsed .sidebar-desktop .btn-logout .nav-icon {
 }
 
 @media (min-width: 768px) {
+  .app-toolbar {
+    top: 1rem;
+    right: 1.5rem;
+  }
+
   .task-mobile-list {
     display: none !important;
   }

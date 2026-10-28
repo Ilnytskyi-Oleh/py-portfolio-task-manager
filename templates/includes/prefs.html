@@ -1,47 +1,42 @@
 {% load i18n %}
 <div class="prefs-panel">
-  <div class="prefs-group">
-    <span class="prefs-label">{% trans "Language" %}</span>
-    <form action="{% url 'set_language' %}" method="post" class="lang-switch">
-      {% csrf_token %}
-      <input type="hidden" name="next" value="{{ request.get_full_path }}">
-      {% get_current_language as LANGUAGE_CODE %}
-      <div class="prefs-segment" role="group" aria-label="{% trans 'Language' %}">
-        {% for code, name in LANGUAGES %}
-          <button
-            type="submit"
-            name="language"
-            value="{{ code }}"
-            class="prefs-seg{% if code == LANGUAGE_CODE %} is-active{% endif %}"
-            title="{{ name }}"
-            aria-pressed="{% if code == LANGUAGE_CODE %}true{% else %}false{% endif %}"
-          >
-            {{ code|upper }}
-          </button>
-        {% endfor %}
-      </div>
-    </form>
-  </div>
-
-  <div class="prefs-group">
-    <span class="prefs-label">{% trans "Theme" %}</span>
-    <div class="prefs-segment" role="group" aria-label="{% trans 'Theme' %}">
-      <button
-        type="button"
-        class="prefs-seg"
-        data-theme-set="light"
-        aria-pressed="false"
-      >
-        {% trans "Light" %}
-      </button>
-      <button
-        type="button"
-        class="prefs-seg"
-        data-theme-set="dark"
-        aria-pressed="false"
-      >
-        {% trans "Dark" %}
-      </button>
+  <form action="{% url 'set_language' %}" method="post" class="lang-switch">
+    {% csrf_token %}
+    <input type="hidden" name="next" value="{{ request.get_full_path }}">
+    {% get_current_language as LANGUAGE_CODE %}
+    <div class="prefs-segment" role="group" aria-label="{% trans 'Language' %}">
+      {% for code, name in LANGUAGES %}
+        <button
+          type="submit"
+          name="language"
+          value="{{ code }}"
+          class="prefs-seg{% if code == LANGUAGE_CODE %} is-active{% endif %}"
+          title="{{ name }}"
+          aria-pressed="{% if code == LANGUAGE_CODE %}true{% else %}false{% endif %}"
+        >
+          {{ code|upper }}
+        </button>
+      {% endfor %}
     </div>
-  </div>
+  </form>
+
+  <button
+    type="button"
+    class="prefs-theme-toggle"
+    data-theme-toggle
+    aria-label="{% trans 'Toggle theme' %}"
+    title="{% trans 'Toggle theme' %}"
+  >
+    <svg class="prefs-theme-icon prefs-theme-icon-sun" viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+      <circle cx="12" cy="12" r="4" fill="none" stroke="currentColor" stroke-width="1.75"/>
+      <path d="M12 3v1.5M12 19.5V21M3 12h1.5M19.5 12H21M5.6 5.6l1.1 1.1M17.3 17.3l1.1 1.1M5.6 18.4l1.1-1.1M17.3 6.7l1.1-1.1"
+            fill="none" stroke="currentColor" stroke-width="1.75"
+            stroke-linecap="round"/>
+    </svg>
+    <svg class="prefs-theme-icon prefs-theme-icon-moon" viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+      <path d="M19.5 13.2A7.5 7.5 0 1 1 10.8 4.5 6 6 0 0 0 19.5 13.2z"
+            fill="none" stroke="currentColor" stroke-width="1.75"
+            stroke-linecap="round" stroke-linejoin="round"/>
+    </svg>
+  </button>
 </div>

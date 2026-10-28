@@ -42,6 +42,10 @@
       button.classList.toggle("is-active", active);
       button.setAttribute("aria-pressed", active ? "true" : "false");
     });
+    document.querySelectorAll("[data-theme-toggle]").forEach((button) => {
+      button.setAttribute("aria-pressed", theme === "dark" ? "true" : "false");
+      button.classList.toggle("is-dark", theme === "dark");
+    });
   }
 
   document.querySelectorAll("[data-theme-set]").forEach((button) => {
@@ -49,14 +53,98 @@
       setTheme(button.getAttribute("data-theme-set"));
     });
   });
+  document.querySelectorAll("[data-theme-toggle]").forEach((button) => {
+    button.addEventListener("click", () => {
+      setTheme(currentTheme() === "dark" ? "light" : "dark");
+    });
+  });
   syncThemeButtons();
+
+  const peekMedia = window.matchMedia("(hover: hover) and (pointer: fine)");
 
   function isSidebarCollapsed() {
     return document.documentElement.classList.contains("sidebar-collapsed");
   }
 
+  function setSidebarPeek(peek) {
+    document.documentElement.classList.toggle("sidebar-peek", Boolean(peek));
+    syncSidebarTooltips();
+  }
+
+  function isSidebarPeekZone(target) {
+    if (!(target instanceof Element)) {
+      return false;
+    }
+    // Only the empty area below menu items may open the rail.
+    return Boolean(target.closest(".sidebar-peek-zone"));
+  }
+
+  function sidebarTooltipTargets() {
+    return document.querySelectorAll(
+      [
+        ".sidebar-desktop .nav-link",
+        ".sidebar-desktop .btn-logout",
+        ".sidebar-desktop .sidebar-toggle",
+        ".sidebar-desktop .sidebar-footer .btn",
+      ].join(", ")
+    );
+  }
+
+  function sidebarTooltipText(el) {
+    return (
+      el.getAttribute("data-bs-original-title") ||
+      el.getAttribute("title") ||
+      ""
+    );
+  }
+
+  function syncSidebarTooltipContent(el, text) {
+    if (!text) {
+      return;
+    }
+    el.setAttribute("title", text);
+    el.setAttribute("data-bs-original-title", text);
+    const tip = window.bootstrap?.Tooltip?.getInstance(el);
+    if (tip) {
+      tip.setContent({ ".tooltip-inner": text });
+    }
+  }
+
+  function syncSidebarTooltips() {
+    if (!window.bootstrap?.Tooltip) {
+      return;
+    }
+    const enabled =
+      isSidebarCollapsed() &&
+      !document.documentElement.classList.contains("sidebar-peek");
+    sidebarTooltipTargets().forEach((el) => {
+      if (!sidebarTooltipText(el)) {
+        return;
+      }
+      let tip = bootstrap.Tooltip.getInstance(el);
+      if (!tip) {
+        tip = new bootstrap.Tooltip(el, {
+          placement: "right",
+          container: "body",
+          // Native title tooltips are ~0.5–1s; keep a tiny delay to avoid flicker.
+          delay: { show: 50, hide: 0 },
+          trigger: "hover",
+        });
+      }
+      if (enabled) {
+        tip.enable();
+      } else {
+        tip.hide();
+        tip.disable();
+      }
+    });
+  }
+
   function setSidebarCollapsed(collapsed) {
     document.documentElement.classList.toggle("sidebar-collapsed", collapsed);
+    if (!collapsed) {
+      setSidebarPeek(false);
+    }
     try {
       localStorage.setItem(
         SIDEBAR_KEY,
@@ -71,8 +159,10 @@
       if (label) {
         button.setAttribute("aria-label", label);
         button.setAttribute("title", label);
+        syncSidebarTooltipContent(button, label);
       }
     });
+    syncSidebarTooltips();
   }
 
   document.querySelectorAll("[data-sidebar-toggle]").forEach((button) => {
@@ -86,6 +176,25 @@
     });
   });
   setSidebarCollapsed(isSidebarCollapsed());
+
+  document.querySelectorAll(".sidebar-desktop").forEach((sidebar) => {
+    sidebar.addEventListener("mouseover", (event) => {
+      if (!peekMedia.matches || !isSidebarCollapsed()) {
+        return;
+      }
+      if (document.documentElement.classList.contains("sidebar-peek")) {
+        return;
+      }
+      if (!isSidebarPeekZone(event.target)) {
+        return;
+      }
+      setSidebarPeek(true);
+    });
+
+    sidebar.addEventListener("mouseleave", () => {
+      setSidebarPeek(false);
+    });
+  });
 
   function readNavGroups() {
     try {
