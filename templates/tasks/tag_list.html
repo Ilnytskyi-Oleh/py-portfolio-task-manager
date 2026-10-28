@@ -1,17 +1,18 @@
 {% extends "base.html" %}
+{% load i18n %}
 
-{% block title %}<title>Tags — TAKT</title>{% endblock %}
+{% block title %}<title>{% trans "Tags" %} — TAKT</title>{% endblock %}
 
 {% block content %}
   <div class="page-header">
     <div>
-      <h1 class="mb-1">Tags</h1>
-      <p class="page-lede mb-0">Labels used across tasks.</p>
+      <h1 class="mb-1">{% trans "Tags" %}</h1>
+      <p class="page-lede mb-0">{% trans "Labels used across tasks." %}</p>
     </div>
     {% if user.is_staff %}
       <div class="page-actions">
         <a class="btn btn-primary" href="{% url 'tasks:tag-create' %}">
-          New tag
+          {% trans "New tag" %}
         </a>
       </div>
     {% endif %}
@@ -21,17 +22,19 @@
       {% for tag in tag_list %}
         <li class="list-group-item d-flex justify-content-between gap-2">
           <span class="tag-chip">{{ tag.name }}</span>
-          <span class="text-muted">{{ tag.task_count }} tasks</span>
+          <span class="text-muted">
+            {{ tag.task_count }} {% trans "tasks" %}
+          </span>
         </li>
       {% endfor %}
     </ul>
   {% else %}
     <div class="empty-state">
-      <h2>No tags yet</h2>
-      <p>Create a tag so the team can label related work.</p>
+      <h2>{% trans "No tags yet" %}</h2>
+      <p>{% trans "Create a tag so the team can label related work." %}</p>
       {% if user.is_staff %}
         <a class="btn btn-primary" href="{% url 'tasks:tag-create' %}">
-          New tag
+          {% trans "New tag" %}
         </a>
       {% endif %}
     </div>

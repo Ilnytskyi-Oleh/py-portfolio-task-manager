@@ -1,4 +1,5 @@
 {% extends "base.html" %}
+{% load i18n %}
 
 {% block title %}<title>{{ team.name }} — TAKT</title>{% endblock %}
 
@@ -10,7 +11,7 @@
     {% if user.is_staff %}
       <div class="page-actions">
         <a class="btn btn-outline-primary"
-           href="{% url 'tasks:team-update' pk=team.pk %}">Edit</a>
+           href="{% url 'tasks:team-update' pk=team.pk %}">{% trans "Edit" %}</a>
       </div>
     {% endif %}
   </div>
@@ -18,7 +19,7 @@
   <div class="row g-3">
     <div class="col-12 col-md-6">
       <div class="list-panel">
-        <h2 class="section-title">Members</h2>
+        <h2 class="section-title">{% trans "Members" %}</h2>
         <ul>
           {% for member in team.members.all %}
             <li>
@@ -26,21 +27,21 @@
               {% if member.position %}— {{ member.position }}{% endif %}
             </li>
           {% empty %}
-            <li class="text-muted">No members yet</li>
+            <li class="text-muted">{% trans "No members yet" %}</li>
           {% endfor %}
         </ul>
       </div>
     </div>
     <div class="col-12 col-md-6">
       <div class="list-panel">
-        <h2 class="section-title">Projects</h2>
+        <h2 class="section-title">{% trans "Projects" %}</h2>
         <ul>
           {% for project in team.projects.all %}
             <li>
               <a href="{{ project.get_absolute_url }}">{{ project.name }}</a>
             </li>
           {% empty %}
-            <li class="text-muted">No projects yet</li>
+            <li class="text-muted">{% trans "No projects yet" %}</li>
           {% endfor %}
         </ul>
       </div>

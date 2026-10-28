@@ -5,6 +5,7 @@ from tasks.auth_views import RateLimitedLoginView
 
 urlpatterns = [
     path("admin/", admin.site.urls),
+    path("i18n/", include("django.conf.urls.i18n")),
     path(
         "accounts/login/",
         RateLimitedLoginView.as_view(),

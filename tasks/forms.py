@@ -1,6 +1,7 @@
 import re
 
 from django import forms
+from django.utils.translation import gettext_lazy as _
 
 from tasks.models import Project, Tag, Task, TaskType, Team, Worker
 from tasks.permissions import is_staff_user
@@ -24,16 +25,19 @@ class TaskForm(forms.ModelForm):
     assignees = forms.ModelMultipleChoiceField(
         queryset=Worker.objects.all(),
         required=False,
+        label=_("Assignees"),
         widget=forms.CheckboxSelectMultiple,
     )
     tags = forms.ModelMultipleChoiceField(
         queryset=Tag.objects.all(),
         required=False,
+        label=_("Tags"),
         widget=forms.CheckboxSelectMultiple,
     )
     tag_names = forms.CharField(
         required=False,
-        help_text="Comma-separated new tags (e.g. python-refactoring)",
+        label=_("New tags"),
+        help_text=_("Comma-separated new tags (e.g. python-refactoring)"),
         widget=forms.TextInput(
             attrs={
                 "placeholder": "landing-page-layout, api",
@@ -87,8 +91,10 @@ class TaskForm(forms.ModelForm):
                 invalid.append(part.strip())
         if invalid:
             raise forms.ValidationError(
-                "Invalid tags: %(tags)s. Use lowercase letters, "
-                "digits and hyphens only.",
+                _(
+                    "Invalid tags: %(tags)s. Use lowercase letters, "
+                    "digits and hyphens only."
+                ),
                 params={"tags": ", ".join(invalid)},
             )
         return raw
@@ -102,7 +108,7 @@ class TaskForm(forms.ModelForm):
             .exists()
         ):
             raise forms.ValidationError(
-                "You cannot create tasks in this project."
+                _("You cannot create tasks in this project.")
             )
         return project
 
@@ -132,39 +138,42 @@ class TaskSearchForm(forms.Form):
         required=False,
         label="",
         widget=forms.TextInput(
-            attrs={"placeholder": "Search by name", "class": "form-control"}
+            attrs={
+                "placeholder": _("Search by name"),
+                "class": "form-control",
+            }
         ),
     )
     status = forms.ChoiceField(
         required=False,
         choices=(
-            ("", "All statuses"),
-            ("open", "Open"),
-            ("done", "Completed"),
+            ("", _("All statuses")),
+            ("open", _("Open")),
+            ("done", _("Completed")),
         ),
         widget=forms.Select(attrs={"class": "form-select"}),
     )
     priority = forms.ChoiceField(
         required=False,
-        choices=[("", "All priorities")] + list(Task.Priority.choices),
+        choices=[("", _("All priorities"))] + list(Task.Priority.choices),
         widget=forms.Select(attrs={"class": "form-select"}),
     )
     project = forms.ModelChoiceField(
         queryset=Project.objects.all(),
         required=False,
-        empty_label="All projects",
+        empty_label=_("All projects"),
         widget=forms.Select(attrs={"class": "form-select"}),
     )
     tag = forms.ModelChoiceField(
         queryset=Tag.objects.all(),
         required=False,
-        empty_label="All tags",
+        empty_label=_("All tags"),
         widget=forms.Select(attrs={"class": "form-select"}),
     )
     team = forms.ModelChoiceField(
         queryset=Team.objects.all(),
         required=False,
-        empty_label="All teams",
+        empty_label=_("All teams"),
         widget=forms.Select(attrs={"class": "form-select"}),
     )
 
@@ -173,6 +182,7 @@ class TeamForm(forms.ModelForm):
     members = forms.ModelMultipleChoiceField(
         queryset=Worker.objects.all(),
         required=False,
+        label=_("Members"),
         widget=forms.CheckboxSelectMultiple,
     )
 
@@ -206,7 +216,7 @@ class ProjectForm(forms.ModelForm):
             and not teams_for_user(self.user).filter(pk=team.pk).exists()
         ):
             raise forms.ValidationError(
-                "You cannot manage projects for this team."
+                _("You cannot manage projects for this team.")
             )
         return team
 
@@ -218,7 +228,7 @@ class WorkerSearchForm(forms.Form):
         label="",
         widget=forms.TextInput(
             attrs={
-                "placeholder": "Search by username",
+                "placeholder": _("Search by username"),
                 "class": "form-control",
             }
         ),
@@ -240,6 +250,6 @@ class TagForm(forms.ModelForm):
         name = self.cleaned_data["name"].strip().lower().replace(" ", "-")
         if not _TAG_RE.match(name):
             raise forms.ValidationError(
-                "Use lowercase letters, digits and hyphens only."
+                _("Use lowercase letters, digits and hyphens only.")
             )
         return name

@@ -1,10 +1,23 @@
+{% load i18n static %}
 <!DOCTYPE html>
-<html lang="en">
+<html lang="{{ LANGUAGE_CODE|default:'en' }}" data-theme="light">
 <head>
   {% block title %}<title>TAKT</title>{% endblock %}
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="theme-color" content="#111318">
+  <script>
+    (function () {
+      try {
+        var theme = localStorage.getItem("takt-theme");
+        if (theme !== "dark" && theme !== "light") theme = "light";
+        document.documentElement.setAttribute("data-theme", theme);
+        if (localStorage.getItem("takt-sidebar") === "collapsed") {
+          document.documentElement.classList.add("sidebar-collapsed");
+        }
+      } catch (e) {}
+    })();
+  </script>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link
@@ -17,7 +30,6 @@
     integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH"
     crossorigin="anonymous"
   >
-  {% load static %}
   <link rel="stylesheet" href="{% static 'css/styles.css' %}">
 </head>
 <body>
@@ -29,9 +41,9 @@
       data-bs-toggle="offcanvas"
       data-bs-target="#mobileNav"
       aria-controls="mobileNav"
-      aria-label="Open menu"
+      aria-label="{% trans 'Open menu' %}"
     >
-      Menu
+      {% trans "Menu" %}
     </button>
     {% include "includes/brand.html" with compact=1 %}
     {% if user.is_authenticated %}
@@ -40,7 +52,7 @@
         {{ user.username }}
       </a>
     {% else %}
-      <a class="btn btn-primary btn-sm" href="{% url 'login' %}">Sign in</a>
+      <a class="btn btn-primary btn-sm" href="{% url 'login' %}">{% trans "Sign in" %}</a>
     {% endif %}
   </div>
 </nav>
@@ -59,7 +71,7 @@
       type="button"
       class="btn-close btn-close-white"
       data-bs-dismiss="offcanvas"
-      aria-label="Close"
+      aria-label="{% trans 'Close' %}"
     ></button>
   </div>
   <div class="offcanvas-body sidebar">
@@ -67,37 +79,34 @@
   </div>
 </div>
 
-<div class="container-fluid g-0">
-  <div class="row g-0 min-vh-100">
-    <aside class="col-md-3 col-lg-2 sidebar d-none d-md-block">
-      {% block sidebar %}
-        {% include "includes/sidebar.html" %}
-      {% endblock %}
-    </aside>
-    <main class="col-md-9 col-lg-10 main-content py-3 py-md-4 px-3 px-md-4">
-      {% if messages %}
-        {% for message in messages %}
-          <div class="alert alert-{{ message.tags }} alert-dismissible fade show"
-               role="alert">
-            {{ message }}
-            <button type="button" class="btn-close" data-bs-dismiss="alert"
-                    aria-label="Close"></button>
-          </div>
-        {% endfor %}
-      {% endif %}
-      {% block content %}{% endblock %}
-      {% block pagination %}
-        {% include "includes/pagination.html" %}
-      {% endblock %}
-    </main>
-  </div>
+<div class="app-shell">
+  <aside class="sidebar sidebar-desktop d-none d-md-flex">
+    {% block sidebar %}
+      {% include "includes/sidebar.html" %}
+    {% endblock %}
+  </aside>
+  <main class="main-content py-3 py-md-4 px-3 px-md-4">
+    {% if messages %}
+      {% for message in messages %}
+        <div class="alert alert-{{ message.tags }} alert-dismissible fade show"
+             role="alert">
+          {{ message }}
+          <button type="button" class="btn-close" data-bs-dismiss="alert"
+                  aria-label="{% trans 'Close' %}"></button>
+        </div>
+      {% endfor %}
+    {% endif %}
+    {% block content %}{% endblock %}
+    {% block pagination %}
+      {% include "includes/pagination.html" %}
+    {% endblock %}
+  </main>
 </div>
 <script
   src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
   integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
   crossorigin="anonymous"
 ></script>
-{% load static %}
 <script src="{% static 'js/app.js' %}" defer></script>
 </body>
 </html>

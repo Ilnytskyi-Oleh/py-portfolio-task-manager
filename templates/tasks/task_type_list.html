@@ -1,17 +1,18 @@
 {% extends "base.html" %}
+{% load i18n %}
 
-{% block title %}<title>Task types — TAKT</title>{% endblock %}
+{% block title %}<title>{% trans "Task types" %} — TAKT</title>{% endblock %}
 
 {% block content %}
   <div class="page-header">
     <div>
-      <h1 class="mb-1">Task types</h1>
-      <p class="page-lede mb-0">Categories for planning and reporting.</p>
+      <h1 class="mb-1">{% trans "Task types" %}</h1>
+      <p class="page-lede mb-0">{% trans "Categories for planning and reporting." %}</p>
     </div>
     {% if user.is_staff %}
       <div class="page-actions">
         <a class="btn btn-primary" href="{% url 'tasks:task-type-create' %}">
-          New type
+          {% trans "New type" %}
         </a>
       </div>
     {% endif %}
@@ -24,11 +25,11 @@
     </ul>
   {% else %}
     <div class="empty-state">
-      <h2>No task types yet</h2>
-      <p>Create types so planning stays consistent across teams.</p>
+      <h2>{% trans "No task types yet" %}</h2>
+      <p>{% trans "Create types so planning stays consistent across teams." %}</p>
       {% if user.is_staff %}
         <a class="btn btn-primary" href="{% url 'tasks:task-type-create' %}">
-          New type
+          {% trans "New type" %}
         </a>
       {% endif %}
     </div>

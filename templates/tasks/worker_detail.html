@@ -1,4 +1,5 @@
 {% extends "base.html" %}
+{% load i18n %}
 
 {% block title %}<title>{{ worker.username }} — TAKT</title>{% endblock %}
 
@@ -7,19 +8,20 @@
     <div>
       <h1 class="mb-1">{{ worker.username }}</h1>
       <p class="page-lede mb-0">
-        {{ worker.get_full_name|default:"No full name" }}
-        · {{ worker.position|default:"No position" }}
+        {% if worker.get_full_name %}{{ worker.get_full_name }}{% else %}{% trans "No full name" %}{% endif %}
+        ·
+        {% if worker.position %}{{ worker.position }}{% else %}{% trans "No position" %}{% endif %}
       </p>
     </div>
   </div>
 
   <div class="list-panel mb-4">
-    <h2 class="section-title">Teams</h2>
+    <h2 class="section-title">{% trans "Teams" %}</h2>
     <ul>
       {% for team in worker.teams.all %}
         <li><a href="{{ team.get_absolute_url }}">{{ team.name }}</a></li>
       {% empty %}
-        <li class="text-muted">Not in any team</li>
+        <li class="text-muted">{% trans "Not in any team" %}</li>
       {% endfor %}
     </ul>
   </div>
@@ -27,7 +29,7 @@
   <div class="row g-3">
     <div class="col-12 col-md-6">
       <div class="list-panel">
-        <h2 class="section-title">Open tasks</h2>
+        <h2 class="section-title">{% trans "Open tasks" %}</h2>
         <ul class="list-group list-group-flush">
           {% for task in incomplete_tasks %}
             <li class="list-group-item d-flex flex-wrap justify-content-between gap-2 px-0">
@@ -38,7 +40,7 @@
             </li>
           {% empty %}
             <li class="list-group-item text-muted px-0 border-0">
-              No open tasks
+              {% trans "No open tasks" %}
             </li>
           {% endfor %}
         </ul>
@@ -46,7 +48,7 @@
     </div>
     <div class="col-12 col-md-6">
       <div class="list-panel">
-        <h2 class="section-title">Completed</h2>
+        <h2 class="section-title">{% trans "Completed" %}</h2>
         <ul class="list-group list-group-flush">
           {% for task in completed_tasks %}
             <li class="list-group-item px-0">
@@ -54,7 +56,7 @@
             </li>
           {% empty %}
             <li class="list-group-item text-muted px-0 border-0">
-              No completed tasks
+              {% trans "No completed tasks" %}
             </li>
           {% endfor %}
         </ul>

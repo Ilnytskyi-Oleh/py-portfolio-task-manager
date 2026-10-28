@@ -1,7 +1,7 @@
 {% extends "base.html" %}
-{% load task_perms %}
+{% load i18n task_perms %}
 
-{% block title %}<title>Sign in — TAKT</title>{% endblock %}
+{% block title %}<title>{% trans "Sign in" %} — TAKT</title>{% endblock %}
 
 {% block content %}
   <div class="login-screen">
@@ -10,41 +10,41 @@
         <div class="login-brand-block">
           {% include "includes/brand.html" with large=1 %}
           <p class="login-tagline mt-3">
-            Complex work. Clear rhythm.
+            {% trans "Complex work. Clear rhythm." %}
           </p>
           <p class="text-muted mb-0 mt-2">
-            Sign in to plan, assign and finish work with your team.
+            {% trans "Sign in to plan, assign and finish work with your team." %}
           </p>
         </div>
 
-        <h1 class="h4 mb-3">Sign in</h1>
+        <h1 class="h4 mb-3">{% trans "Sign in" %}</h1>
         {% if form.errors %}
           <div class="alert alert-danger">
-            Could not sign in. Check your username and password, then try again.
+            {% trans "Could not sign in. Check your username and password, then try again." %}
           </div>
         {% endif %}
         <form method="post" class="login-panel">
           {% csrf_token %}
           <div class="mb-3">
-            <label class="form-label" for="id_username">Username</label>
+            <label class="form-label" for="id_username">{% trans "Username" %}</label>
             <input type="text" name="username" id="id_username"
                    class="form-control form-control-lg" required autofocus
                    autocomplete="username">
           </div>
           <div class="mb-3">
-            <label class="form-label" for="id_password">Password</label>
+            <label class="form-label" for="id_password">{% trans "Password" %}</label>
             <input type="password" name="password" id="id_password"
                    class="form-control form-control-lg" required
                    autocomplete="current-password">
           </div>
           <button type="submit" class="btn btn-primary btn-lg w-100">
-            Sign in
+            {% trans "Sign in" %}
           </button>
         </form>
         {% demo_mode as show_demo %}
         {% if show_demo %}
           <p class="text-muted small mt-3 mb-0">
-            Demo: <code>admin.user</code> / <code>1qazcde3</code>
+            {% trans "Demo:" %} <code>admin.user</code> / <code>1qazcde3</code>
           </p>
         {% endif %}
       </div>

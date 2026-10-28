@@ -1,17 +1,18 @@
 {% extends "base.html" %}
+{% load i18n %}
 
-{% block title %}<title>Projects — TAKT</title>{% endblock %}
+{% block title %}<title>{% trans "Projects" %} — TAKT</title>{% endblock %}
 
 {% block content %}
   <div class="page-header">
     <div>
-      <h1 class="mb-1">Projects</h1>
-      <p class="page-lede mb-0">Initiatives owned by teams.</p>
+      <h1 class="mb-1">{% trans "Projects" %}</h1>
+      <p class="page-lede mb-0">{% trans "Initiatives owned by teams." %}</p>
     </div>
     {% if user.is_staff or user.teams.exists %}
       <div class="page-actions">
         <a class="btn btn-primary" href="{% url 'tasks:project-create' %}">
-          New project
+          {% trans "New project" %}
         </a>
       </div>
     {% endif %}
@@ -20,9 +21,9 @@
     <table class="table tm-table">
       <thead>
       <tr>
-        <th>Name</th>
-        <th>Team</th>
-        <th>Tasks</th>
+        <th>{% trans "Name" %}</th>
+        <th>{% trans "Team" %}</th>
+        <th>{% trans "Tasks" %}</th>
       </tr>
       </thead>
       <tbody>
@@ -44,8 +45,8 @@
         <tr>
           <td colspan="3">
             <div class="empty-state border-0 bg-transparent py-4">
-              <h2>No projects yet</h2>
-              <p>Create a project to group related tasks.</p>
+              <h2>{% trans "No projects yet" %}</h2>
+              <p>{% trans "Create a project to group related tasks." %}</p>
             </div>
           </td>
         </tr>

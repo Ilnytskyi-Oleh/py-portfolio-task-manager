@@ -1,14 +1,15 @@
 {% extends "base.html" %}
+{% load i18n %}
 
-{% block title %}<title>Team form — TAKT</title>{% endblock %}
+{% block title %}<title>{% trans "Team form" %} — TAKT</title>{% endblock %}
 
 {% block content %}
   <div class="page-header">
     <div>
       <h1 class="mb-1">
-        {% if object %}Edit team{% else %}New team{% endif %}
+        {% if object %}{% trans "Edit team" %}{% else %}{% trans "New team" %}{% endif %}
       </h1>
-      <p class="page-lede mb-0">Bring people together around shared work.</p>
+      <p class="page-lede mb-0">{% trans "Bring people together around shared work." %}</p>
     </div>
   </div>
   <form method="post" class="form-shell">
@@ -23,9 +24,9 @@
       </div>
     {% endfor %}
     <div class="d-flex gap-2">
-      <button type="submit" class="btn btn-primary">Save</button>
+      <button type="submit" class="btn btn-primary">{% trans "Save" %}</button>
       <a href="{% url 'tasks:team-list' %}" class="btn btn-outline-secondary">
-        Cancel
+        {% trans "Cancel" %}
       </a>
     </div>
   </form>

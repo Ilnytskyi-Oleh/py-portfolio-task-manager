@@ -1,29 +1,29 @@
 {% extends "base.html" %}
-{% load query_extras %}
+{% load i18n query_extras %}
 
-{% block title %}<title>My tasks — TAKT</title>{% endblock %}
+{% block title %}<title>{% trans "My tasks" %} — TAKT</title>{% endblock %}
 
 {% block content %}
   <div class="page-header">
     <div>
-      <h1 class="mb-1">My tasks</h1>
-      <p class="page-lede mb-0">Work assigned to you — next steps first.</p>
+      <h1 class="mb-1">{% trans "My tasks" %}</h1>
+      <p class="page-lede mb-0">{% trans "Work assigned to you — next steps first." %}</p>
     </div>
     <div class="page-actions">
       <a class="btn btn-primary" href="{% url 'tasks:task-create' %}">
-        New task
+        {% trans "New task" %}
       </a>
     </div>
   </div>
 
   <div class="filter-panel">
-    <div class="filter-chips" role="tablist" aria-label="Status filters">
+    <div class="filter-chips" role="tablist" aria-label="{% trans 'Status filters' %}">
       <a class="filter-chip{% if not status_filter %} active{% endif %}"
-         href="{% url_replace status='' page=None %}">All</a>
+         href="{% url_replace status='' page=None %}">{% trans "All" %}</a>
       <a class="filter-chip{% if status_filter == 'open' %} active{% endif %}"
-         href="{% url_replace status='open' page=None %}">Open</a>
+         href="{% url_replace status='open' page=None %}">{% trans "Open" %}</a>
       <a class="filter-chip{% if status_filter == 'done' %} active{% endif %}"
-         href="{% url_replace status='done' page=None %}">Done</a>
+         href="{% url_replace status='done' page=None %}">{% trans "Done" %}</a>
     </div>
 
     <form method="get" class="row g-2 filter-bar">
@@ -40,7 +40,7 @@
       <div class="col-6 col-sm-4 col-lg-2">{{ search_form.team }}</div>
       <div class="col-12 col-sm-4 col-lg-1">
         <button class="btn btn-outline-secondary w-100" type="submit">
-          Filter
+          {% trans "Filter" %}
         </button>
       </div>
       {% if status_filter %}

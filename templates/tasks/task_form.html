@@ -1,18 +1,19 @@
 {% extends "base.html" %}
+{% load i18n %}
 
-{% block title %}<title>Task form — TAKT</title>{% endblock %}
+{% block title %}<title>{% trans "Task form" %} — TAKT</title>{% endblock %}
 
 {% block content %}
   <div class="page-header">
     <div>
       <h1 class="mb-1">
-        {% if object %}Edit task{% else %}New task{% endif %}
+        {% if object %}{% trans "Edit task" %}{% else %}{% trans "New task" %}{% endif %}
       </h1>
       <p class="page-lede mb-0">
         {% if object %}
-          Update details and keep ownership clear.
+          {% trans "Update details and keep ownership clear." %}
         {% else %}
-          Capture the next step so the team can move.
+          {% trans "Capture the next step so the team can move." %}
         {% endif %}
       </p>
     </div>
@@ -32,9 +33,9 @@
       </div>
     {% endfor %}
     <div class="d-flex gap-2">
-      <button type="submit" class="btn btn-primary">Save</button>
+      <button type="submit" class="btn btn-primary">{% trans "Save" %}</button>
       <a href="{% url 'tasks:task-list' %}" class="btn btn-outline-secondary">
-        Cancel
+        {% trans "Cancel" %}
       </a>
     </div>
   </form>

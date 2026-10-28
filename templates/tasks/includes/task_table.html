@@ -1,4 +1,4 @@
-{% load query_extras %}
+{% load i18n query_extras %}
 {% if task_list %}
   <div class="table-responsive table-desktop table-shell">
     <table class="table tm-table">
@@ -7,65 +7,65 @@
         <th class="col-sticky{% if current_sort == 'name' %} is-sorted{% endif %}">
           {% if current_sort is not None %}
             <a href="{% sort_link 'name' %}">
-              Name
+              {% trans "Name" %}
               <span class="sort-ind">
                 {% if current_sort == 'name' %}{% if current_dir == 'asc' %}↑{% else %}↓{% endif %}{% else %}↕{% endif %}
               </span>
             </a>
           {% else %}
-            Name
+            {% trans "Name" %}
           {% endif %}
         </th>
         <th class="{% if current_sort == 'project' %}is-sorted{% endif %}">
           {% if current_sort is not None %}
             <a href="{% sort_link 'project' %}">
-              Project
+              {% trans "Project" %}
               <span class="sort-ind">
                 {% if current_sort == 'project' %}{% if current_dir == 'asc' %}↑{% else %}↓{% endif %}{% else %}↕{% endif %}
               </span>
             </a>
           {% else %}
-            Project
+            {% trans "Project" %}
           {% endif %}
         </th>
-        <th>Type</th>
+        <th>{% trans "Type" %}</th>
         <th class="{% if current_sort == 'priority' %}is-sorted{% endif %}">
           {% if current_sort is not None %}
             <a href="{% sort_link 'priority' %}">
-              Priority
+              {% trans "Priority" %}
               <span class="sort-ind">
                 {% if current_sort == 'priority' %}{% if current_dir == 'asc' %}↑{% else %}↓{% endif %}{% else %}↕{% endif %}
               </span>
             </a>
           {% else %}
-            Priority
+            {% trans "Priority" %}
           {% endif %}
         </th>
         <th class="{% if current_sort == 'deadline' %}is-sorted{% endif %}">
           {% if current_sort is not None %}
             <a href="{% sort_link 'deadline' %}">
-              Deadline
+              {% trans "Deadline" %}
               <span class="sort-ind">
                 {% if current_sort == 'deadline' %}{% if current_dir == 'asc' %}↑{% else %}↓{% endif %}{% else %}↕{% endif %}
               </span>
             </a>
           {% else %}
-            Deadline
+            {% trans "Deadline" %}
           {% endif %}
         </th>
         <th class="{% if current_sort == 'status' %}is-sorted{% endif %}">
           {% if current_sort is not None %}
             <a href="{% sort_link 'status' %}">
-              Status
+              {% trans "Status" %}
               <span class="sort-ind">
                 {% if current_sort == 'status' %}{% if current_dir == 'asc' %}↑{% else %}↓{% endif %}{% else %}↕{% endif %}
               </span>
             </a>
           {% else %}
-            Status
+            {% trans "Status" %}
           {% endif %}
         </th>
-        <th>Tags</th>
+        <th>{% trans "Tags" %}</th>
       </tr>
       </thead>
       <tbody>
@@ -100,9 +100,9 @@
           </td>
           <td>
             {% if task.is_completed %}
-              <span class="badge-status-done">Done</span>
+              <span class="badge-status-done">{% trans "Done" %}</span>
             {% else %}
-              <span class="badge-status-open">Open</span>
+              <span class="badge-status-open">{% trans "Open" %}</span>
             {% endif %}
           </td>
           <td>
@@ -126,9 +126,9 @@
         </div>
         <div class="task-mobile-meta">
           {% if task.is_completed %}
-            <span class="badge-status-done">Done</span>
+            <span class="badge-status-done">{% trans "Done" %}</span>
           {% else %}
-            <span class="badge-status-open">Open</span>
+            <span class="badge-status-open">{% trans "Open" %}</span>
           {% endif %}
           <span class="badge-priority-{{ task.priority }}">
             {{ task.get_priority_display }}
@@ -149,7 +149,7 @@
               <span>{{ task.deadline }}</span>
             {% endif %}
           {% else %}
-            <span>No deadline</span>
+            <span>{% trans "No deadline" %}</span>
           {% endif %}
         </div>
         {% if task.tags.all %}
@@ -164,10 +164,10 @@
   </div>
 {% else %}
   <div class="empty-state">
-    <h2>No tasks here yet</h2>
-    <p>Create the first task to get the team moving — or adjust filters.</p>
+    <h2>{% trans "No tasks here yet" %}</h2>
+    <p>{% trans "Create the first task to get the team moving — or adjust filters." %}</p>
     <a class="btn btn-primary" href="{% url 'tasks:task-create' %}">
-      New task
+      {% trans "New task" %}
     </a>
   </div>
 {% endif %}

@@ -1,0 +1,495 @@
+# Ukrainian translations for PROJECT.
+# Copyright (C) 2026 ORGANIZATION
+# This file is distributed under the same license as the PROJECT project.
+# FIRST AUTHOR <EMAIL@ADDRESS>, 2026.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: PROJECT VERSION\n"
+"Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
+"POT-Creation-Date: 2026-10-28 15:29+0000\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language: uk\n"
+"Language-Team: uk <LL@li.org>\n"
+"Plural-Forms: nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && n%10<=4 && "
+"(n%100<10 || n%100>=20) ? 1 : 2);\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=utf-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Generated-By: Babel 2.18.0\n"
+
+msgid "Language"
+msgstr "Мова"
+
+msgid "Theme"
+msgstr "Тема"
+
+msgid "Light"
+msgstr "Світла"
+
+msgid "Dark"
+msgstr "Темна"
+
+msgid "Open menu"
+msgstr "Відкрити меню"
+
+msgid "Menu"
+msgstr "Меню"
+
+msgid "Sign in"
+msgstr "Увійти"
+
+msgid "Sign out"
+msgstr "Вийти"
+
+msgid "Close"
+msgstr "Закрити"
+
+msgid "Collapse sidebar"
+msgstr "Згорнути меню"
+
+msgid "Expand sidebar"
+msgstr "Розгорнути меню"
+
+msgid "Signed in as"
+msgstr "Ви увійшли як"
+
+msgid "Workspace"
+msgstr "Робочий простір"
+
+msgid "Catalog"
+msgstr "Каталог"
+
+msgid "Manage"
+msgstr "Керування"
+
+msgid "Dashboard"
+msgstr "Дашборд"
+
+msgid "Tasks"
+msgstr "Задачі"
+
+msgid "My tasks"
+msgstr "Мої задачі"
+
+msgid "Projects"
+msgstr "Проєкти"
+
+msgid "Teams"
+msgstr "Команди"
+
+msgid "Workers"
+msgstr "Працівники"
+
+msgid "Tags"
+msgstr "Теги"
+
+msgid "Task types"
+msgstr "Типи задач"
+
+msgid "Admin"
+msgstr "Адмін"
+
+msgid "Create team"
+msgstr "Створити команду"
+
+msgid "Create tag"
+msgstr "Створити тег"
+
+msgid "Create type"
+msgstr "Створити тип"
+
+msgid "Complex work. Clear rhythm."
+msgstr "Складна робота. Зрозумілий ритм."
+
+msgid "Sign in to plan, assign and finish work with your team."
+msgstr "Увійдіть, щоб планувати, призначати та завершувати роботу з командою."
+
+msgid "Could not sign in. Check your username and password, then try again."
+msgstr "Не вдалося увійти. Перевірте ім’я користувача та пароль і спробуйте ще раз."
+
+msgid "Username"
+msgstr "Ім’я користувача"
+
+msgid "Password"
+msgstr "Пароль"
+
+msgid "Demo:"
+msgstr "Демо:"
+
+msgid "One place for people, projects and the next step in your work."
+msgstr "Одне місце для людей, проєктів і наступного кроку у вашій роботі."
+
+msgid "New task"
+msgstr "Нова задача"
+
+msgid "Your workload"
+msgstr "Ваше навантаження"
+
+msgid "Open tasks"
+msgstr "Відкриті задачі"
+
+msgid "Completed"
+msgstr "Завершені"
+
+msgid "View open"
+msgstr "Переглянути відкриті"
+
+msgid "View done"
+msgstr "Переглянути завершені"
+
+msgid "Browse, filter and prioritize team work."
+msgstr "Переглядайте, фільтруйте та пріоритезуйте роботу команди."
+
+msgid "Status filters"
+msgstr "Фільтри статусу"
+
+msgid "All"
+msgstr "Усі"
+
+msgid "Open"
+msgstr "Відкриті"
+
+msgid "Done"
+msgstr "Готово"
+
+msgid "Filter"
+msgstr "Фільтр"
+
+msgid "Work assigned to you — next steps first."
+msgstr "Робота, призначена вам — спочатку наступні кроки."
+
+msgid "Name"
+msgstr "Назва"
+
+msgid "Project"
+msgstr "Проєкт"
+
+msgid "Type"
+msgstr "Тип"
+
+msgid "Priority"
+msgstr "Пріоритет"
+
+msgid "Deadline"
+msgstr "Термін"
+
+msgid "Status"
+msgstr "Статус"
+
+msgid "No deadline"
+msgstr "Без терміну"
+
+msgid "No tasks here yet"
+msgstr "Тут ще немає задач"
+
+msgid "Create the first task to get the team moving — or adjust filters."
+msgstr "Створіть першу задачу, щоб запустити роботу команди — або змініть фільтри."
+
+msgid "Edit"
+msgstr "Редагувати"
+
+msgid "Delete"
+msgstr "Видалити"
+
+msgid "Mark open"
+msgstr "Позначити відкритою"
+
+msgid "Mark done"
+msgstr "Позначити готовою"
+
+msgid "Creator"
+msgstr "Автор"
+
+msgid "Team"
+msgstr "Команда"
+
+msgid "Assignees"
+msgstr "Виконавці"
+
+msgid "Description"
+msgstr "Опис"
+
+msgid "Nobody assigned"
+msgstr "Нікого не призначено"
+
+msgid "Task form"
+msgstr "Форма задачі"
+
+msgid "Edit task"
+msgstr "Редагувати задачу"
+
+msgid "Update details and keep ownership clear."
+msgstr "Оновіть деталі та залиште відповідальність зрозумілою."
+
+msgid "Capture the next step so the team can move."
+msgstr "Зафіксуйте наступний крок, щоб команда могла рухатися далі."
+
+msgid "Save"
+msgstr "Зберегти"
+
+msgid "Cancel"
+msgstr "Скасувати"
+
+msgid "Delete task"
+msgstr "Видалити задачу"
+
+msgid "This action cannot be undone."
+msgstr "Цю дію неможливо скасувати."
+
+#, python-format
+msgid "Delete <strong>%(name)s</strong>? You will not be able to restore it."
+msgstr "Видалити <strong>%(name)s</strong>? Відновити буде неможливо."
+
+msgid "Initiatives owned by teams."
+msgstr "Ініціативи, якими володіють команди."
+
+msgid "New project"
+msgstr "Новий проєкт"
+
+msgid "No projects yet"
+msgstr "Проєктів ще немає"
+
+msgid "Create a project to group related tasks."
+msgstr "Створіть проєкт, щоб згрупувати пов’язані задачі."
+
+msgid "Team:"
+msgstr "Команда:"
+
+msgid "Project form"
+msgstr "Форма проєкту"
+
+msgid "Edit project"
+msgstr "Редагувати проєкт"
+
+msgid "Define the space where related work lives."
+msgstr "Визначте простір, де живе пов’язана робота."
+
+msgid "Groups collaborating on projects."
+msgstr "Групи, що співпрацюють над проєктами."
+
+msgid "New team"
+msgstr "Нова команда"
+
+msgid "Members"
+msgstr "Учасники"
+
+msgid "No teams yet"
+msgstr "Команд ще немає"
+
+msgid "Create a team to start organizing people and projects."
+msgstr "Створіть команду, щоб почати організовувати людей і проєкти."
+
+msgid "No members yet"
+msgstr "Учасників ще немає"
+
+msgid "Team form"
+msgstr "Форма команди"
+
+msgid "Edit team"
+msgstr "Редагувати команду"
+
+msgid "Bring people together around shared work."
+msgstr "Об’єднайте людей навколо спільної роботи."
+
+msgid "People across positions and teams."
+msgstr "Люди за посадами та командами."
+
+msgid "Search"
+msgstr "Пошук"
+
+msgid "Position"
+msgstr "Посада"
+
+msgid "No workers found"
+msgstr "Працівників не знайдено"
+
+msgid "Try another username or clear the search."
+msgstr "Спробуйте інше ім’я користувача або очистіть пошук."
+
+msgid "No full name"
+msgstr "Немає повного імені"
+
+msgid "No position"
+msgstr "Немає посади"
+
+msgid "Not in any team"
+msgstr "Не входить до жодної команди"
+
+msgid "No open tasks"
+msgstr "Немає відкритих задач"
+
+msgid "No completed tasks"
+msgstr "Немає завершених задач"
+
+msgid "Labels used across tasks."
+msgstr "Мітки, що використовуються в задачах."
+
+msgid "New tag"
+msgstr "Новий тег"
+
+msgid "No tags yet"
+msgstr "Тегів ще немає"
+
+msgid "Create a tag so the team can label related work."
+msgstr "Створіть тег, щоб команда могла позначати пов’язану роботу."
+
+msgid "Tag form"
+msgstr "Форма тега"
+
+msgid "Add a label the team can reuse on tasks."
+msgstr "Додайте мітку, яку команда зможе повторно використовувати."
+
+msgid "Categories for planning and reporting."
+msgstr "Категорії для планування та звітності."
+
+msgid "New type"
+msgstr "Новий тип"
+
+msgid "No task types yet"
+msgstr "Типів задач ще немає"
+
+msgid "Create types so planning stays consistent across teams."
+msgstr "Створіть типи, щоб планування залишалося узгодженим між командами."
+
+msgid "Task type form"
+msgstr "Форма типу задачі"
+
+msgid "New task type"
+msgstr "Новий тип задачі"
+
+msgid "Define a category the team can plan against."
+msgstr "Визначте категорію, за якою команда зможе планувати."
+
+msgid "Page navigation"
+msgstr "Навігація сторінками"
+
+msgid "Previous"
+msgstr "Назад"
+
+msgid "Next"
+msgstr "Далі"
+
+#, python-format
+msgid "Page %(page)s of %(pages)s"
+msgstr "Сторінка %(page)s з %(pages)s"
+
+msgid "Urgent"
+msgstr "Терміновий"
+
+msgid "High"
+msgstr "Високий"
+
+msgid "Medium"
+msgstr "Середній"
+
+msgid "Low"
+msgstr "Низький"
+
+msgid "name"
+msgstr "назва"
+
+msgid "description"
+msgstr "опис"
+
+msgid "deadline"
+msgstr "термін"
+
+msgid "completed"
+msgstr "завершено"
+
+msgid "priority"
+msgstr "пріоритет"
+
+msgid "task type"
+msgstr "тип задачі"
+
+msgid "task types"
+msgstr "типи задач"
+
+msgid "project"
+msgstr "проєкт"
+
+msgid "creator"
+msgstr "автор"
+
+msgid "assignees"
+msgstr "виконавці"
+
+msgid "tags"
+msgstr "теги"
+
+msgid "task"
+msgstr "задача"
+
+msgid "tasks"
+msgstr "задачі"
+
+msgid "team"
+msgstr "команда"
+
+msgid "teams"
+msgstr "команди"
+
+msgid "members"
+msgstr "учасники"
+
+msgid "projects"
+msgstr "проєкти"
+
+msgid "position"
+msgstr "посада"
+
+msgid "positions"
+msgstr "посади"
+
+msgid "worker"
+msgstr "працівник"
+
+msgid "workers"
+msgstr "працівники"
+
+msgid "tag"
+msgstr "тег"
+
+msgid "New tags"
+msgstr "Нові теги"
+
+msgid "Comma-separated new tags (e.g. python-refactoring)"
+msgstr "Нові теги через кому (напр. python-refactoring)"
+
+#, python-format
+msgid "Invalid tags: %(tags)s. Use lowercase letters, digits and hyphens only."
+msgstr "Некоректні теги: %(tags)s. Лише малі літери, цифри та дефіси."
+
+msgid "You cannot create tasks in this project."
+msgstr "Ви не можете створювати задачі в цьому проєкті."
+
+msgid "Search by name"
+msgstr "Пошук за назвою"
+
+msgid "All statuses"
+msgstr "Усі статуси"
+
+msgid "All priorities"
+msgstr "Усі пріоритети"
+
+msgid "All projects"
+msgstr "Усі проєкти"
+
+msgid "All tags"
+msgstr "Усі теги"
+
+msgid "All teams"
+msgstr "Усі команди"
+
+msgid "You cannot manage projects for this team."
+msgstr "Ви не можете керувати проєктами цієї команди."
+
+msgid "Search by username"
+msgstr "Пошук за ім’ям користувача"
+
+msgid "Use lowercase letters, digits and hyphens only."
+msgstr "Використовуйте лише малі літери, цифри та дефіси."
+
